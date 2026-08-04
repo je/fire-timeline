@@ -16,7 +16,6 @@
 	});
 	let masterDiv, stackedPersonnelDiv;
 
-	// Process Resource Data first into an array to enable cross-referencing calculations
 	const resourceTableRows = $derived(
 		(Array.isArray(rawRh) ? rawRh : Object.values(rawRh || {}))
 			.map(row => {
@@ -25,7 +24,7 @@
 				const targetData = agencyObj || {};
 				return {
 					date: new Date(dateStr),
-					dateKeyYMD: dateStr.slice(0, 10), // Safe baseline string token
+					dateKeyYMD: dateStr.slice(0, 10),
 					bia: parseInt(targetData.BIA) || 0,
 					blm: parseInt(targetData.BLM) || 0,
 					cl: parseInt(targetData['C & L'] || targetData.cl || targetData.CandL) || 0,
@@ -46,7 +45,6 @@
 			.reverse()
 	);
 
-	// FIXED CALCULATION: Table 1 looks up processed rows securely to resolve 0 counts
 	const incidentTableRows = $derived(
 		(Array.isArray(rawIh) ? rawIh : Object.values(rawIh || {}))
 			.map(row => {
@@ -229,7 +227,6 @@
 			})));
 		}
 
-		// FIXED DOT FORMATTING: Replaced true with specific mask to suppress extra lines on dots
 		if (visibleSeries.acres) {
 			marks.push(Plot.lineY(incidentData, { x: 'date', y: d => (d.acres / calcMaxAcres) * 100, stroke: 'red', strokeWidth: 3 }));
 			marks.push(Plot.dot(incidentData, { x: 'date', y: d => (d.acres / calcMaxAcres) * 100, fill: 'red', r: 1.5, channels: { Date: "date", "Calculated Acres": 'acres' }, tip: { format: { x: false, y: false, Date: true, "Calculated Acres": true, fill: false } } }));
@@ -241,7 +238,6 @@
 
 		if (visibleSeries.containment) {
 			marks.push(Plot.lineY(incidentData, { x: 'date', y: 'containment', stroke: 'black', strokeWidth: 2 }));
-			// FIXED: Added precise formatting mask to remove system tracking duplicates from the containment dot tooltip
 			marks.push(Plot.dot(incidentData, { x: 'date', y: 'containment', fill: 'black', r: 1.5, channels: { Date: "date", "Percent Contained": d => `${d.containment}%` }, tip: { format: { x: false, y: false, Date: true, "Percent Contained": true, fill: false } } }));
 		}
 
@@ -302,23 +298,23 @@
 		const canvas = document.createElement('canvas'); 
 		const svgWidth = svgEl.getBoundingClientRect().width;
 		const svgHeight = svgEl.getBoundingClientRect().height;
-		const titleGap = 40; // Spacing allocation for titles
+		const titleGap = 40;
 		canvas.width = svgWidth * 2; 
 		canvas.height = (svgHeight + titleGap) * 2; 
 		const context = canvas.getContext('2d'); 
 		context.fillStyle = 'white'; 
 		context.fillRect(0, 0, canvas.width, canvas.height); 
 		context.scale(2, 2); 
-		// Draw Text Headers Natively onto Canvas Vector Map
+
 		context.fillStyle = '#212529';
 		context.font = 'bold 11px sans-serif';
 		const titleText = `${(rawMeta?.name || 'WILDFIRE').toUpperCase()}  •  ID: ${rawMeta?.ufireid || 'N/A'}  •  Timeline: ${rawMeta?.adate || ''} to ${rawMeta?.bdate || ''}`;
 		context.fillText(titleText, 10, 20);
-		// Draw Separator Line
+
 		context.strokeStyle = '#dee2e6';
 		context.lineWidth = 1;
 		context.beginPath(); context.moveTo(10, 28); context.lineTo(svgWidth - 10, 28); context.stroke();
-		// Offset chart drawing position beneath header labels
+
 		context.drawImage(image, 0, titleGap); 
 		const pngURL = canvas.toDataURL('image/png'); 
 		const downloadLink = document.createElement('a'); 
@@ -333,7 +329,6 @@
 
 	</div>
 	
-	<!-- Filter Buttons Card -->
 	<div class="card bg-light mb-3 border border-secondary-subtle rounded-3">
 		<div class="card-body p-2">
 			<div class="d-flex flex-wrap gap-1 mb-2 border-bottom pb-2">
@@ -369,7 +364,6 @@
 		<div bind:this={stackedPersonnelDiv}></div>
 	</div>
 
-	<!-- TABLE 1: INCIDENT HISTORY -->
 	<div class="mb-4">
 		<h5 class="h6 fw-bold text-dark text-uppercase tracking-wider mb-2" style="font-size: 0.75rem;">incident history</h5>
 		<div class="mb-2 border-bottom border-dark pb-1">
@@ -409,7 +403,6 @@
 		</div>
 	</div>
 
-	<!-- TABLE 2: RESOURCE PERSONNEL -->
 	<div class="mb-5">
 		<h5 class="h6 fw-bold text-dark text-uppercase tracking-wider mb-2" style="font-size: 0.75rem;">resource personnel</h5>
 		<div class="mb-2 border-bottom border-dark pb-1">

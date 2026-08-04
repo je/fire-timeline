@@ -8,16 +8,13 @@
 	let successId = $state('');
 	let isDebugExpanded = $state(false);
 
-	// Core reactive state array container for the live KV catalog data matrix
 	let rawCatalogList = $state([]);
 
-	// HIGH-EFFICIENCY CHRONOLOGICAL SORTING: Arranges your active live records from newest to oldest automatically
-	// Direct text localeCompare avoids heavy Date object instantiations, preventing rendering loops
 	const sortedCatalogList = $derived(
 		[...rawCatalogList].sort((a, b) => {
 			const strA = a.ihdate || a.bdate || a.adate || '';
 			const strB = b.ihdate || b.bdate || b.adate || '';
-			return strB.localeCompare(strA); // Newest alphanumeric string logs sit cleanly at the top
+			return strB.localeCompare(strA);
 		})
 	);
 
@@ -45,7 +42,6 @@
 				successId = result.fireid;
 				debugData = result;
 				
-				// Re-syncs the directory live from your fire:index_json key immediately after a build run completes
 				await fetchCatalogDirectory();
 			} else {
 				statusMessage = `Error: ${result.error || 'Unknown failure'}`;
@@ -58,13 +54,11 @@
 		}
 	}
 
-	// Direct master array fetch handler
 	async function fetchCatalogDirectory() {
 		try {
 			const response = await fetch(`/api/get-catalog-index`);
 			if (response.ok) {
 				const directoryData = await response.json();
-				// Securely maps the array payload natively into the reactive state container
 				rawCatalogList = Array.isArray(directoryData) ? directoryData : [];
 			}
 		} catch (error) {
@@ -72,7 +66,6 @@
 		}
 	}
 
-	// Safe browser mount runtime macro triggers single load upon ingest execution layers
 	$effect(() => {
 		fetchCatalogDirectory();
 	});
@@ -82,7 +75,6 @@
 
 <div class="container py-4">
     <div class="page-content">
-        <!-- Resized Title Header -->
         <div class='row mb-3'>
             <div class='col-12'>
                 <h3 class="h4 fw-bold text-dark border-bottom pb-2">Timeline Generator</h3>
@@ -90,7 +82,6 @@
         </div>
 
         <div class='row g-4'>
-            <!-- Left Column: Background Guides and Image Links -->
             <div class='col-lg-6 col-md-6 col-12'>
                 <div class='mb-2'>
                     <h5 class="h6 fw-bold text-secondary text-uppercase tracking-wider">Background</h5>
@@ -115,7 +106,6 @@
                 </div>
             </div>
 
-            <!-- Right Column: Interactive Products Panel Ingestion and Outputs -->
             <div class='col-lg-6 col-md-6 col-12'>
                 <div class='mb-2'>
                     <h5 class="h6 fw-bold text-secondary text-uppercase tracking-wider">Products</h5>
@@ -149,7 +139,6 @@
                         </div>
                     </form>
 
-                    <!-- Consolidated Success & Status Area inside the primary form panel -->
                     {#if statusMessage}
                         <div class="alert {successId ? 'alert-success border-success' : 'alert-secondary'} py-2 px-3 m-0 rounded small" style="font-size: 0.8rem;" role="alert">
                             <div class="fw-bold mb-1">Status: {statusMessage}</div>
@@ -168,7 +157,6 @@
                     </p>
                 </div>
 
-                <!-- Pure Svelte 5 Collapsible Accordion holds the smaller technical debug blocks -->
                 {#if debugData}
                     <div class="card border-secondary shadow-sm mb-4 small">
                         <button 
@@ -200,13 +188,11 @@
                     </div>
                 {/if}
 
-	<!-- SECTION: RECENTLY PRODUCED -->
 	<div class="mt-4 mb-4">
 		<div class="border-bottom border-dark pb-1 mb-2">
 			<p class="text-secondary text-uppercase m-0" style="font-size: 0.75rem; font-weight: 900;">Recently Produced</p>
 		</div>
 
-		<!-- Simplified vertical text list (Name then Number) with no scrollbars or search fields -->
 		<div style="font-size: 0.75rem; font-family: monospace; line-height: 1.4;">
 			{#each sortedCatalogList as fire}
 				<div class="py-0.5 border-bottom border-light">
@@ -223,7 +209,6 @@
 		</div>
 	</div>
 
-	<!-- Inline CSS utility helper for clean layout interactions -->
 	<style>
 		:global(.hover-underline:hover) {
 			text-decoration: underline !important;

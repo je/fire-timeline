@@ -12,7 +12,6 @@ export async function POST({ request, platform }) {
         const ufireid = fireid.toUpperCase();
         pushLog("INIT", `Processing unique tracking identity value: "${ufireid}"`);
 
-        // Check database storage namespace availability
         const FIRE_STORE = platform.env.FIRE_TIMELINE; 
         if (!FIRE_STORE) {
             throw new Error("Cloudflare KV binding 'FIRE_TIMELINE' is missing in dashboard settings.");
@@ -24,7 +23,6 @@ export async function POST({ request, platform }) {
             throw new Error("ArcGIS credentials are empty. Ensure ARCGIS_USER and ARCGIS_PASS are bound in the Cloudflare dashboard settings.");
         }
 
-        // --- STAGE 1: AUTHENTICATION (www.arcgis.com) ---
         pushLog("AUTH", "Generating ArcGIS authentication session token...");
         const tokenUrl = "https://www.arcgis.com/sharing/generatetoken";
         const tokenBody = new URLSearchParams({
@@ -46,7 +44,6 @@ export async function POST({ request, platform }) {
         if (!token) throw new Error(`Authorization rejected by ArcGIS server: ${JSON.stringify(tokenData)}`);
         pushLog("AUTH", "Token generated successfully.");
 
-        // --- STAGE 2: INCIDENT HISTORY (services1.arcgis.com) ---
         pushLog("IH_QUERY", "Querying IRWIN Incident History feature maps...");
         const ihUrl = "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/IRWIN_Incident_History/FeatureServer/0/query";
         const ihParams = new URLSearchParams({ f: "json", token, outFields: "*", where: `UniqueFireIdentifier='${ufireid}'` });
@@ -64,13 +61,11 @@ export async function POST({ request, platform }) {
         }
         pushLog("IH_QUERY", `Found ${ihData.features.length} trace records.`);
 
-        // Parse root incident identifiers
         const firstFeatureAttr = ihData.features[0].attributes;
         const irwinid = firstFeatureAttr.IrwinID;
         const incidentName = firstFeatureAttr.IncidentName?.trim() || ufireid;
         pushLog("DATA_CLEAN", `Target localized name: "${incidentName}". IrwinID string: ${irwinid}`);
 
-        // Clean & process history timelines (Replacing Pandas drop_duplicates keep='last')
         let ihMap = new Map();
         ihData.features.forEach(f => {
             const attr = f.attributes;
@@ -91,7 +86,6 @@ export async function POST({ request, platform }) {
         const bdate = sortedIhDates[sortedIhDates.length - 1] || null;
         pushLog("DATA_CLEAN", `Incident timelines grouped into matrix array. Range: ${adate} to ${bdate}`);
 
-        // --- STAGE 3: RESOURCE HISTORY (services1.arcgis.com) ---
         let rhTimelineList = [];
         if (irwinid) {
             pushLog("RH_QUERY", "Querying matching tactical response personnel details...");
@@ -109,7 +103,6 @@ export async function POST({ request, platform }) {
                     const statesList = new Set(['AL','AK','AZ','AR','CA','CO','CT','DE','DC','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY']);
                     let dailyAgencies = {};
 
-                    // Pivot table and array aggregator (Replacing Pandas Pivot/ffill)
                     rhData.features.forEach(f => {
                         const attr = f.attributes;
                         if (!attr || !attr.ResourceQuantityCurrentAsOf) return;
@@ -137,11 +130,9 @@ export async function POST({ request, platform }) {
         const contextSummary = { ufireid, name: incidentName, ihdate: new Date().toISOString().split('T')[0], adate, bdate };
         const dataPayload = { meta: contextSummary, incident_history_timeline: ihTimelineList, resource_history_timeline: rhTimelineList };
         
-        // Save raw tracking matrix array packet safely with no extra files
         await FIRE_STORE.put(`fire:data:${ufireid}`, JSON.stringify(dataPayload));
         pushLog("KV_STORAGE", `Saved 'fire:data:${ufireid}' timeline matrix package safely.`);
 
-        // Append item to global dashboard catalog list matrix reference
         let oldDataRaw = await FIRE_STORE.get("fire:index_json");
         let oldData = oldDataRaw ? JSON.parse(oldDataRaw) : [];
         oldData.push(contextSummary);

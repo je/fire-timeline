@@ -13,10 +13,8 @@ export async function GET({ platform }) {
 			return json([]); 
 		}
 
-		// FIXED: Reads your existing pre-built master lookup index directly in one operation
 		const masterIndexRaw = await kvNamespace.get("fire:index_json", { type: "json" });
 		
-		// Return the flat array directly to your frontend homepage sorting loop
 		return json(Array.isArray(masterIndexRaw) ? masterIndexRaw : []);
 	} catch (error) {
 		console.error("Global Catalog API load failure:", error);

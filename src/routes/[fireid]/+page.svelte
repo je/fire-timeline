@@ -5,7 +5,7 @@
 	let { data } = $props();
 
 	$effect(() => {
-		console.log('Incident API response:', data.fireData);
+		console.log('API response:', data.fireData);
 	});
 	
 	const rawMeta = $derived(data.fireData.meta);

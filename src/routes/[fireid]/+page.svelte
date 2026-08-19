@@ -3,6 +3,10 @@
 	import { base } from '$app/paths';
 
 	let { data } = $props();
+
+	$effect(() => {
+		console.log('Incident API response:', data.fireData);
+	});
 	
 	const rawMeta = $derived(data.fireData.meta);
 	const rawIh = $derived(data.fireData.incident_history_timeline || []);

@@ -8,17 +8,30 @@
 	let successId = $state('');
 	let isDebugExpanded = $state(false);
 
-	let rawCatalogList = $state([]);
+    let rawCatalogList = $state([]);
 
-	const sortedCatalogList = $derived(
-		[...rawCatalogList].sort((a, b) => {
-			const strA = a.ihdate || a.bdate || a.adate || '';
-			const strB = b.ihdate || b.bdate || b.adate || '';
-			return strB.localeCompare(strA);
-		})
-	);
+    const sortedCatalogList = $derived(() => {
+        // 1. Sort the items with the newest dates first
+        const sorted = [...rawCatalogList].sort((a, b) => {
+            const strA = a.ihdate || a.bdate || a.adate || '';
+            const strB = b.ihdate || b.bdate || b.adate || '';
+            return strB.localeCompare(strA);
+        });
 
-	async function handleSubmit(event) {
+        // 2. Use a Map to keep only the first (newest) instance of each ufireid
+        const uniqueMap = new Map();
+        for (const item of sorted) {
+            if (!uniqueMap.has(item.ufireid)) {
+                uniqueMap.set(item.ufireid, item);
+            }
+        }
+
+        // 3. Return the unique, sorted array
+        return Array.from(uniqueMap.values());
+    });
+
+
+async function handleSubmit(event) {
 		if (event) event.preventDefault();
 		if (!fireIdInput) return;
 		

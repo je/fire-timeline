@@ -19,7 +19,9 @@
                     return strB.localeCompare(strA);
                 })
                 .reduce((map, item) => {
-                    if (!map.has(item.ufireid)) map.set(item.ufireid, item);
+                    if (!map.has(item.ufireid)) {
+                        map.set(item.ufireid, item);
+                    }
                     return map;
                 }, new Map())
                 .values()

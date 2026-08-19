@@ -10,23 +10,33 @@
 
     let rawCatalogList = $state([]);
 
-    const sortedCatalogList = $derived(
-        Array.from(
-            [...rawCatalogList]
-                .sort((a, b) => {
-                    const strA = a.ihdate || a.bdate || a.adate || '';
-                    const strB = b.ihdate || b.bdate || b.adate || '';
-                    return strB.localeCompare(strA);
-                })
-                .reduce((map, item) => {
-                    if (!map.has(item.ufireid)) {
-                        map.set(item.ufireid, item);
-                    }
-                    return map;
-                }, new Map())
-                .values()
-        )
-    );
+    const sortedCatalogList = $derived(() => {
+        const uniqueMap = new Map();
+
+        for (const item of rawCatalogList) {
+            const uniqueKey = item.ufireid || item.fireid;
+            if (!uniqueKey) continue;
+
+            const currentCalDate = item.ihdate || item.bdate || item.adate || '';
+
+            if (!uniqueMap.has(uniqueKey)) {
+                uniqueMap.set(uniqueKey, item);
+            } else {
+                const existingItem = uniqueMap.get(uniqueKey);
+                const existingCalDate = existingItem.ihdate || existingItem.bdate || existingItem.adate || '';
+                
+                if (currentCalDate.localeCompare(existingCalDate) > 0) {
+                    uniqueMap.set(uniqueKey, item);
+                }
+            }
+        }
+
+        return Array.from(uniqueMap.values()).sort((a, b) => {
+            const strA = a.ihdate || a.bdate || a.adate || '';
+            const strB = b.ihdate || b.bdate || b.adate || '';
+            return strB.localeCompare(strA);
+        });
+    });
 
 async function handleSubmit(event) {
 		if (event) event.preventDefault();
@@ -204,7 +214,7 @@ async function handleSubmit(event) {
 		</div>
 
 		<div style="font-size: 0.75rem; font-family: monospace; line-height: 1.4;">
-			{#each sortedCatalogList as fire}
+			{#each sortedCatalogList() as fire}
 				<div class="py-0.5 border-bottom border-light">
 					<a href="{base}/{fire.ufireid || fire.fireid}" class="text-decoration-none text-primary hover-underline" style="font-weight: normal !important;">
 						{fire.name || 'Unnamed Incident'}

@@ -11,9 +11,15 @@
 	const rawMeta = $derived(data.fireData.meta);
 	const rawIh = $derived(data.fireData.incident_history_timeline || []);
 	const rawRh = $derived(data.fireData.resource_history_timeline || []);
+	const incidentApiResponse = $derived(data.fireData.incident_api_response || null);
+	const personnelApiResponse = $derived(data.fireData.personnel_api_response || null);
+	const agencyKeys = $derived(Array.from(new Set(
+		(Array.isArray(rawRh) ? rawRh : Object.values(rawRh || {}))
+			.flatMap(row => row?.[2] ? Object.keys(row[2]) : [])
+	)).sort());
 
 	let visibleSeries = $state({ 
-		acres: true, cost: true, containment: true,
+		acres: true, cost: true, containment: true, incidentPersonnel: true,
 		BIA: true, BLM: true, 'C & L': true, DOI: true, FWS: true, 
 		INTL: true, NPS: true, NWS: true, PRI: true, ST: true, 
 		TNC: true, USFS: true, WAD: true, OTHR: true
@@ -29,6 +35,7 @@
 				return {
 					date: new Date(dateStr),
 					dateKeyYMD: dateStr.slice(0, 10),
+					agencies: targetData,
 					bia: parseInt(targetData.BIA) || 0,
 					blm: parseInt(targetData.BLM) || 0,
 					cl: parseInt(targetData['C & L'] || targetData.cl || targetData.CandL) || 0,
@@ -53,25 +60,14 @@
 		(Array.isArray(rawIh) ? rawIh : Object.values(rawIh || {}))
 			.map(row => {
 				if (!row || !Array.isArray(row) || row.length < 4) return null;
-				const [dateStr, acresVal, costVal, containmentVal] = row;
-				
-				const cleanDateKey = dateStr.slice(0, 10);
-				const matchedRhRow = resourceTableRows.find(r => r.dateKeyYMD === cleanDateKey);
-				
-				let totalPersonnelOnDay = 0;
-				if (matchedRhRow) {
-					totalPersonnelOnDay = matchedRhRow.bia + matchedRhRow.blm + matchedRhRow.cl + 
-						matchedRhRow.doi + matchedRhRow.fws + matchedRhRow.intl + matchedRhRow.nps + 
-						matchedRhRow.nws + matchedRhRow.othr + matchedRhRow.pri + matchedRhRow.st + 
-						matchedRhRow.tnc + matchedRhRow.usfs + matchedRhRow.wad;
-				}
+				const [dateStr, acresVal, costVal, containmentVal, incidentPersonnelVal] = row;
 
 				return {
 					date: new Date(dateStr),
-					acres: parseInt(acresVal) || 0,
+					acres: Number(acresVal) || 0,
 					cost: parseInt(costVal) || 0,
 					containment: parseInt(containmentVal) || 0,
-					personnelTotal: totalPersonnelOnDay
+					incidentPersonnel: parseInt(incidentPersonnelVal) || 0
 				};
 			})
 			.filter(d => d && !isNaN(d.date.getTime()))
@@ -117,12 +113,13 @@
 
 		const incidentData = ihArray.map(row => {
 			if (!row || !Array.isArray(row) || row.length < 4) return null;
-			const [dateStr, acresVal, costVal, containmentVal] = row;
+			const [dateStr, acresVal, costVal, containmentVal, incidentPersonnelVal] = row;
 			return {
 				date: new Date(dateStr),
-				acres: parseInt(acresVal) || 0,
+				acres: Number(acresVal) || 0,
 				cost: parseInt(costVal) || 0,
-				containment: parseInt(containmentVal) || 0
+				containment: parseInt(containmentVal) || 0,
+				incidentPersonnel: parseInt(incidentPersonnelVal) || 0
 			};
 		}).filter(d => d && !isNaN(d.date.getTime()));
 
@@ -132,6 +129,7 @@
 			const targetData = agencyObj || {};
 			return {
 				date: new Date(dateStr),
+				agencies: targetData,
 				bia: parseInt(targetData.BIA) || 0,
 				blm: parseInt(targetData.BLM) || 0,
 				cl: parseInt(targetData['C & L'] || targetData.cl || targetData.CandL) || 0,
@@ -156,40 +154,29 @@
 
 		const calcMaxAcres = Math.max(...incidentData.map(d => d.acres), 0) || 1;
 		const calcMaxCost = Math.max(...incidentData.map(d => d.cost), 0) || 1;
+		const calcMaxIncidentPersonnel = Math.max(...incidentData.map(d => d.incidentPersonnel), 0) || 1;
 
-		const agencyConfig = [
-			{ key: 'bia', label: 'BIA', color: getAgencyColor('BIA') },
-			{ key: 'blm', label: 'BLM', color: getAgencyColor('BLM') },
-			{ key: 'cl', label: 'C & L', color: getAgencyColor('C & L') },
-			{ key: 'doi', label: 'DOI', color: getAgencyColor('DOI') },
-			{ key: 'fws', label: 'FWS', color: getAgencyColor('FWS') },
-			{ key: 'intl', label: 'INTL', color: getAgencyColor('INTL') },
-			{ key: 'nps', label: 'NPS', color: getAgencyColor('NPS') },
-			{ key: 'nws', label: 'NWS', color: getAgencyColor('NWS') },
-			{ key: 'othr', label: 'OTHR', color: getAgencyColor('OTHR') },
-			{ key: 'pri', label: 'PRI', color: getAgencyColor('PRI') },
-			{ key: 'st', label: 'ST', color: getAgencyColor('ST') },
-			{ key: 'tnc', label: 'TNC', color: getAgencyColor('TNC') },
-			{ key: 'usfs', label: 'USFS', color: getAgencyColor('USFS') },
-			{ key: 'wad', label: 'WAD', color: getAgencyColor('WAD') }
-		];
+		const agencyConfig = Array.from(new Set(resourceData.flatMap(d => Object.keys(d.agencies))))
+			.sort()
+			.map(label => ({ label, color: getAgencyColor(label) }));
 
 		const activeAgenciesInData = agencyConfig.filter(cfg => 
-			resourceData.some(d => d[cfg.key] > 0)
+			resourceData.some(d => (parseInt(d.agencies[cfg.label]) || 0) > 0)
 		);
 
 		const activeResourceBars = [];
 		agencyConfig.forEach(cfg => {
-			if (visibleSeries[cfg.label]) {
+			if (visibleSeries[cfg.label] !== false) {
 				resourceData.forEach(d => {
-					if (d[cfg.key] > 0) {
+					const agencyQuantity = parseInt(d.agencies[cfg.label]) || 0;
+					if (agencyQuantity > 0) {
 						const rowObj = { 
-							date: d.date, qty: d[cfg.key], agency: cfg.label, 'Daily Personnel': ' '
+							date: d.date, qty: agencyQuantity, agency: cfg.label, 'Daily Personnel': ' '
 						};
 						agencyConfig.forEach(innerCfg => {
-							if (d[innerCfg.key] > 0 && visibleSeries[innerCfg.label]) {
+							if ((parseInt(d.agencies[innerCfg.label]) || 0) > 0 && visibleSeries[innerCfg.label] !== false) {
 								const squareChar = getFlatUnicodeSquare(innerCfg.label);
-								rowObj[`  ${squareChar}  ${innerCfg.label}`] = d[innerCfg.key];
+								rowObj[`  ${squareChar}  ${innerCfg.label}`] = parseInt(d.agencies[innerCfg.label]) || 0;
 							}
 						});
 						activeResourceBars.push(rowObj);
@@ -206,7 +193,7 @@
 		
 		activeAgenciesInData.forEach(cfg => {
 			resourceData.forEach(d => {
-				if (d[cfg.key] > 0 && visibleSeries[cfg.label]) {
+				if ((parseInt(d.agencies[cfg.label]) || 0) > 0 && visibleSeries[cfg.label] !== false) {
 					const squareChar = getFlatUnicodeSquare(cfg.label);
 					const structuredLabel = `  ${squareChar}  ${cfg.label}`;
 					tipChannels[structuredLabel] = structuredLabel;
@@ -215,25 +202,9 @@
 			});
 		});
 
-		if (activeResourceBars.length) {
-			const totalCombinedMaxEver = Math.max(...resourceData.map(r => 
-				r.bia + r.blm + r.cl + r.doi + r.fws + r.intl + r.nps + r.nws + r.othr + r.pri + r.st + r.tnc + r.usfs + r.wad
-			), 0) || 1;
-
-			marks.push(Plot.rectY(activeResourceBars, Plot.stackY({
-				x: "date",
-				interval: "day",
-				y: d => (d.qty / totalCombinedMaxEver) * 100,
-				fill: "agency", 
-				fillOpacity: 0.6,
-				channels: tipChannels,
-				tip: { format: tipFormats }
-			})));
-		}
-
 		if (visibleSeries.acres) {
 			marks.push(Plot.lineY(incidentData, { x: 'date', y: d => (d.acres / calcMaxAcres) * 100, stroke: 'red', strokeWidth: 3 }));
-			marks.push(Plot.dot(incidentData, { x: 'date', y: d => (d.acres / calcMaxAcres) * 100, fill: 'red', r: 1.5, channels: { Date: "date", "Calculated Acres": 'acres' }, tip: { format: { x: false, y: false, Date: true, "Calculated Acres": true, fill: false } } }));
+			marks.push(Plot.dot(incidentData, { x: 'date', y: d => (d.acres / calcMaxAcres) * 100, fill: 'red', r: 1.5, channels: { Date: "date", "Incident Size": 'acres' }, tip: { format: { x: false, y: false, Date: true, "Incident Size": true, fill: false } } }));
 		}
 		if (visibleSeries.cost) {
 			marks.push(Plot.lineY(incidentData, { x: 'date', y: d => (d.cost / calcMaxCost) * 100, stroke: 'green', strokeWidth: 2 }));
@@ -244,7 +215,10 @@
 			marks.push(Plot.lineY(incidentData, { x: 'date', y: 'containment', stroke: 'black', strokeWidth: 2 }));
 			marks.push(Plot.dot(incidentData, { x: 'date', y: 'containment', fill: 'black', r: 1.5, channels: { Date: "date", "Percent Contained": d => `${d.containment}%` }, tip: { format: { x: false, y: false, Date: true, "Percent Contained": true, fill: false } } }));
 		}
-
+		if (visibleSeries.incidentPersonnel) {
+			marks.push(Plot.lineY(incidentData, { x: 'date', y: d => (d.incidentPersonnel / calcMaxIncidentPersonnel) * 100, stroke: 'orange', strokeWidth: 2 }));
+			marks.push(Plot.dot(incidentData, { x: 'date', y: d => (d.incidentPersonnel / calcMaxIncidentPersonnel) * 100, fill: 'orange', r: 1.5, channels: { Date: "date", "Total Incident Personnel": 'incidentPersonnel' }, tip: { format: { x: false, y: false, Date: true, "Total Incident Personnel": true, fill: false } } }));
+		}
 		masterDiv.appendChild(Plot.plot({
 			grid: true, 
 			marginLeft: 90, 
@@ -336,16 +310,10 @@
 	<div class="card bg-light mb-3 border border-secondary-subtle rounded-3">
 		<div class="card-body p-2">
 			<div class="d-flex flex-wrap gap-1 mb-2 border-bottom pb-2">
-				<button onclick={() => toggleLine('acres')} class="btn btn-sm fw-bold" style="font-size: 0.75rem; background-color: {visibleSeries.acres ? '#fff' : '#f8f9fa'}; border: 1px solid {visibleSeries.acres ? 'red' : '#dee2e6'}; color: {visibleSeries.acres ? 'red' : '#6c757d'} !important; opacity: {visibleSeries.acres ? '1' : '0.5'}; text-decoration: {visibleSeries.acres ? 'none' : 'line-through'};">Calculated Acres</button>
+				<button onclick={() => toggleLine('acres')} class="btn btn-sm fw-bold" style="font-size: 0.75rem; background-color: {visibleSeries.acres ? '#fff' : '#f8f9fa'}; border: 1px solid {visibleSeries.acres ? 'red' : '#dee2e6'}; color: {visibleSeries.acres ? 'red' : '#6c757d'} !important; opacity: {visibleSeries.acres ? '1' : '0.5'}; text-decoration: {visibleSeries.acres ? 'none' : 'line-through'};">Incident Size</button>
 				<button onclick={() => toggleLine('cost')} class="btn btn-sm fw-bold" style="font-size: 0.75rem; background-color: {visibleSeries.cost ? '#fff' : '#f8f9fa'}; border: 1px solid {visibleSeries.cost ? 'green' : '#dee2e6'}; color: {visibleSeries.cost ? 'green' : '#6c757d'} !important; opacity: {visibleSeries.cost ? '1' : '0.5'}; text-decoration: {visibleSeries.cost ? 'none' : 'line-through'};">Financial Cost</button>
 				<button onclick={() => toggleLine('containment')} class="btn btn-sm fw-bold" style="font-size: 0.75rem; background-color: {visibleSeries.containment ? '#fff' : '#f8f9fa'}; border: 1px solid {visibleSeries.containment ? 'black' : '#dee2e6'}; color: {visibleSeries.containment ? 'black' : '#6c757d'} !important; opacity: {visibleSeries.containment ? '1' : '0.5'}; text-decoration: {visibleSeries.containment ? 'none' : 'line-through'};">Percent Contained</button>
-			</div>
-			<div class="d-flex flex-wrap gap-1">
-				{#each ['BIA', 'BLM', 'C & L', 'DOI', 'FWS', 'INTL', 'NPS', 'NWS', 'OTHR', 'PRI', 'ST', 'TNC', 'USFS', 'WAD'] as agency}
-					<button onclick={() => toggleLine(agency)} class="btn btn-xs fw-bold text-dark border-secondary-subtle" style="font-size: 0.65rem; padding: 2px 7px; background-color: {visibleSeries[agency] ? getAgencyColor(agency) : '#e9ecef'}; opacity: {visibleSeries[agency] ? '1' : '0.4'}; text-decoration: {visibleSeries[agency] ? 'none' : 'line-through'}; text-shadow: {visibleSeries[agency] ? '0px 0px 1px rgba(255,255,255,0.7)' : 'none'};">
-						{agency}
-					</button>
-				{/each}
+				<button onclick={() => toggleLine('incidentPersonnel')} class="btn btn-sm fw-bold" style="font-size: 0.75rem; background-color: {visibleSeries.incidentPersonnel ? '#fff' : '#f8f9fa'}; border: 1px solid {visibleSeries.incidentPersonnel ? 'orange' : '#dee2e6'}; color: {visibleSeries.incidentPersonnel ? 'orange' : '#6c757d'} !important; opacity: {visibleSeries.incidentPersonnel ? '1' : '0.5'}; text-decoration: {visibleSeries.incidentPersonnel ? 'none' : 'line-through'};">Total Incident Personnel</button>
 			</div>
 		</div>
 	</div>
@@ -359,13 +327,13 @@
 		<div bind:this={masterDiv}></div>
 	</div>
 
-	<div style="background: white; padding: 1.5rem; border: 2px solid #333; border-radius: 8px; margin-bottom: 2.5rem; box-shadow: 4px 4px 0px #333;">
+	<div style="display: none; background: white; padding: 1.5rem; border: 2px solid #333; border-radius: 8px; margin-bottom: 2.5rem; box-shadow: 4px 4px 0px #333;">
 		<div class="mb-2 pb-1" style="font-size: 11px; font-family: sans-serif; border-bottom: 1px solid #dee2e6;">
 			<span class="text-dark fw-bold text-uppercase tracking-wider">{rawMeta?.name || 'Wildfire'}</span> &bull; 
 			<span class="text-muted">ID:</span> <span class="text-dark">{rawMeta?.ufireid || 'N/A'}</span> &bull; 
 			<span class="text-muted">Timeline:</span> <span class="text-dark">{rawMeta?.adate || ''}</span> to <span class="text-dark">{rawMeta?.bdate || ''}</span>
 		</div>
-		<div bind:this={stackedPersonnelDiv}></div>
+		<div bind:this={stackedPersonnelDiv} style="display: none;"></div>
 	</div>
 
 	<div class="mb-4">
@@ -384,10 +352,10 @@
 			<thead class="table-dark border-dark text-uppercase" style="font-size: 0.6rem;">
 				<tr>
 					<th class="px-2 py-0">Date</th>
-					<th class="py-0 text-end">Acres</th>
+					<th class="py-0 text-end">Incident Size</th>
 					<th class="py-0 text-end">Cost</th>
 					<th class="py-0 text-end">Containment</th>
-					<th class="px-2 py-0 text-end text-warning">Personnel</th>
+					<th class="px-2 py-0 text-end text-warning">Total Incident Personnel</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -397,7 +365,7 @@
 						<td class="py-0 text-end text-danger">{row.acres.toLocaleString()}</td>
 						<td class="py-0 text-end text-success">${row.cost.toLocaleString()}</td>
 						<td class="py-0 text-end text-dark">{row.containment}%</td>
-						<td class="px-2 py-0 text-end text-dark" style="background-color: rgba(255,193,7,0.03);">{row.personnelTotal.toLocaleString()}</td>
+						<td class="px-2 py-0 text-end text-dark" style="background-color: rgba(255,193,7,0.03);">{row.incidentPersonnel.toLocaleString()}</td>
 					</tr>
 				{:else}
 					<tr><td colspan="5" class="text-center text-muted py-2">No incident logs.</td></tr>
@@ -407,7 +375,7 @@
 		</div>
 	</div>
 
-	<div class="mb-5">
+	<div class="mb-5" style="display: none;">
 		<h5 class="h6 fw-bold text-dark text-uppercase tracking-wider mb-2" style="font-size: 0.75rem;">resource personnel</h5>
 		<div class="mb-2 border-bottom border-dark pb-1">
 			<h4 class="text-dark text-uppercase tracking-wider m-0" style="font-size: 0.9rem; font-weight: 900;">
@@ -423,47 +391,39 @@
 				<thead class="table-dark border-dark text-uppercase" style="font-size: 0.55rem;">
 					<tr>
 						<th class="text-start px-2 py-0">Date</th>
-						<th class="py-0">BIA</th>
-						<th class="py-0">BLM</th>
-						<th class="py-0">C&L</th>
-						<th class="py-0">DOI</th>
-						<th class="py-0">FWS</th>
-						<th class="py-0">INTL</th>
-						<th class="py-0">NPS</th>
-						<th class="py-0">NWS</th>
-						<th class="py-0">OTHR</th>
-						<th class="py-0">PRI</th>
-						<th class="py-0">ST</th>
-						<th class="py-0">TNC</th>
-						<th class="py-0">USFS</th>
-						<th class="px-2 py-0 text-end">WAD</th>
+					{#each agencyKeys as agency}
+						<th class="py-0">{agency}</th>
+					{/each}
 					</tr>
 				</thead>
 				<tbody>
 					{#each resourceTableRows as row}
 						<tr class="py-0">
 							<td class="text-start px-2 py-0 text-dark bg-light">{formatToYMD(row.date)}</td>
-							<td class="py-0" style="opacity: {row.bia > 0 ? 1 : 0.25}">{row.bia}</td>
-							<td class="py-0" style="opacity: {row.blm > 0 ? 1 : 0.25}">{row.blm}</td>
-							<td class="py-0" style="opacity: {row.cl > 0 ? 1 : 0.25}">{row.cl}</td>
-							<td class="py-0" style="opacity: {row.doi > 0 ? 1 : 0.25}">{row.doi}</td>
-							<td class="py-0" style="opacity: {row.fws > 0 ? 1 : 0.25}">{row.fws}</td>
-							<td class="py-0" style="opacity: {row.intl > 0 ? 1 : 0.25}">{row.intl}</td>
-							<td class="py-0" style="opacity: {row.nps > 0 ? 1 : 0.25}">{row.nps}</td>
-							<td class="py-0" style="opacity: {row.nws > 0 ? 1 : 0.25}">{row.nws}</td>
-							<td class="py-0" style="opacity: {row.othr > 0 ? 1 : 0.25}">{row.othr}</td>
-							<td class="py-0" style="opacity: {row.pri > 0 ? 1 : 0.25}">{row.pri}</td>
-							<td class="py-0" style="opacity: {row.st > 0 ? 1 : 0.25}">{row.st}</td>
-							<td class="py-0" style="opacity: {row.tnc > 0 ? 1 : 0.25}">{row.tnc}</td>
-							<td class="py-0" style="opacity: {row.usfs > 0 ? 1 : 0.25}">{row.usfs}</td>
-							<td class="px-2 py-0 text-end" style="opacity: {row.wad > 0 ? 1 : 0.25}">{row.wad}</td>
+							{#each agencyKeys as agency}
+								{@const value = parseInt(row.agencies[agency]) || 0}
+								<td class="py-0" style="opacity: {value > 0 ? 1 : 0.25}">{value}</td>
+							{/each}
 						</tr>
 					{:else}
-						<tr><td colspan="15" class="text-center text-muted py-2">No resource logs.</td></tr>
+						<tr><td colspan={agencyKeys.length + 1} class="text-center text-muted py-2">No resource logs.</td></tr>
 					{/each}
 				</tbody>
 			</table>
 		</div>
+	</div>
+
+	<div class="mb-4">
+		<h5 class="h6 fw-bold text-dark text-uppercase tracking-wider mb-2" style="font-size: 0.75rem;">full api responses</h5>
+		<details class="border border-dark" style="font-family: monospace; font-size: 0.65rem;">
+			<summary class="bg-dark text-white fw-bold p-2" style="cursor: pointer;">Show raw incident and personnel responses</summary>
+			<div class="p-2 bg-light border-top border-dark">
+				<h6 class="fw-bold text-dark mb-1">Incident history response</h6>
+				<pre class="bg-dark text-success p-2 mb-3" style="white-space: pre-wrap; overflow-wrap: anywhere; max-height: 32rem; overflow: auto;">{JSON.stringify(incidentApiResponse, null, 2)}</pre>
+				<h6 class="fw-bold text-dark mb-1">Personnel response</h6>
+				<pre class="bg-dark text-success p-2 mb-0" style="white-space: pre-wrap; overflow-wrap: anywhere; max-height: 32rem; overflow: auto;">{JSON.stringify(personnelApiResponse, null, 2)}</pre>
+			</div>
+		</details>
 	</div>
 </div>
 

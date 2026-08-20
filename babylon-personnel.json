@@ -1,0 +1,1992 @@
+{
+  "objectIdFieldName": "OBJECTID",
+  "uniqueIdField": {
+    "name": "OBJECTID",
+    "isSystemMaintained": true
+  },
+  "globalIdFieldName": "GlobalID",
+  "fields": [
+    {
+      "name": "IrwinID",
+      "type": "esriFieldTypeGUID",
+      "alias": "Irwin ID",
+      "sqlType": "sqlTypeOther",
+      "length": 38,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "CreatedBySystem",
+      "type": "esriFieldTypeString",
+      "alias": "CreatedBySystem",
+      "sqlType": "sqlTypeOther",
+      "length": 255,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "OBJECTID",
+      "type": "esriFieldTypeOID",
+      "alias": "OBJECTID",
+      "sqlType": "sqlTypeOther",
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "IrwinIRSID",
+      "type": "esriFieldTypeGUID",
+      "alias": "IrwinIRSID",
+      "sqlType": "sqlTypeOther",
+      "length": 38,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "ModifiedBySystem",
+      "type": "esriFieldTypeString",
+      "alias": "Modified By System",
+      "sqlType": "sqlTypeOther",
+      "length": 255,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "CreatedOnDateTime",
+      "type": "esriFieldTypeDouble",
+      "alias": "Created On Date Time",
+      "sqlType": "sqlTypeOther",
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "ModifiedOnDateTime",
+      "type": "esriFieldTypeDouble",
+      "alias": "Modified On Date Time",
+      "sqlType": "sqlTypeOther",
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "ResourceQuantityCurrentAsOf",
+      "type": "esriFieldTypeDate",
+      "alias": "ResourceQuantityCurrentAsOf",
+      "sqlType": "sqlTypeOther",
+      "length": 8,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "ResourceAgency",
+      "type": "esriFieldTypeString",
+      "alias": "Resource Agency",
+      "sqlType": "sqlTypeOther",
+      "length": 255,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "ResourceCategory",
+      "type": "esriFieldTypeString",
+      "alias": "ResourceCategory",
+      "sqlType": "sqlTypeOther",
+      "length": 25,
+      "domain": {
+        "type": "codedValue",
+        "name": "Fire_Resource_Category",
+        "mergePolicy": "esriMPTDefaultValue",
+        "splitPolicy": "esriSPTDefaultValue",
+        "description": "Fire_Resource_Category",
+        "codedValues": [
+          {
+            "name": "Airtanker",
+            "code": "Airtanker"
+          },
+          {
+            "name": "Fixed Wing",
+            "code": "Fixed Wing"
+          },
+          {
+            "name": "Helicopter",
+            "code": "Helicopter"
+          },
+          {
+            "name": "Handcrew",
+            "code": "Handcrew"
+          },
+          {
+            "name": "Other",
+            "code": "Other"
+          },
+          {
+            "name": "Dozer",
+            "code": "Dozer"
+          },
+          {
+            "name": "Engine",
+            "code": "Engine"
+          },
+          {
+            "name": "Other Equipment",
+            "code": "Other Equipment"
+          },
+          {
+            "name": "Tractor Plow",
+            "code": "Tractor Plow"
+          },
+          {
+            "name": "Watertender",
+            "code": "Watertender"
+          },
+          {
+            "name": "Operations",
+            "code": "Operations"
+          },
+          {
+            "name": "Boat",
+            "code": "Boat"
+          },
+          {
+            "name": "Heavy",
+            "code": "Heavy"
+          },
+          {
+            "name": "Single Resource",
+            "code": "Single Resource"
+          }
+        ]
+      },
+      "defaultValue": null
+    },
+    {
+      "name": "ResourceKind",
+      "type": "esriFieldTypeString",
+      "alias": "ResourceKind",
+      "sqlType": "sqlTypeOther",
+      "length": 16,
+      "domain": {
+        "type": "codedValue",
+        "name": "Fire_Resource_Kind",
+        "mergePolicy": "esriMPTDefaultValue",
+        "splitPolicy": "esriSPTDefaultValue",
+        "description": "Fire_Resource_Kind",
+        "codedValues": [
+          {
+            "name": "Aircraft",
+            "code": "Aircraft"
+          },
+          {
+            "name": "Crews",
+            "code": "Crews"
+          },
+          {
+            "name": "Equipment",
+            "code": "Equipment"
+          },
+          {
+            "name": "Overhead",
+            "code": "Overhead"
+          },
+          {
+            "name": "Team",
+            "code": "Team"
+          },
+          {
+            "name": "Module",
+            "code": "Module"
+          },
+          {
+            "name": "Overhead Group",
+            "code": "Overhead Group"
+          },
+          {
+            "name": "Aircraft Group",
+            "code": "Aircraft Group"
+          },
+          {
+            "name": "Equipment Group",
+            "code": "Equipment Group"
+          }
+        ]
+      },
+      "defaultValue": null
+    },
+    {
+      "name": "ResourcePersonnelQuantity",
+      "type": "esriFieldTypeSmallInteger",
+      "alias": "ResourcePersonnelQuantity",
+      "sqlType": "sqlTypeOther",
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "ResourceProvider",
+      "type": "esriFieldTypeString",
+      "alias": "ResourceProvider",
+      "sqlType": "sqlTypeOther",
+      "length": 10,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "ResourceQuantity",
+      "type": "esriFieldTypeSmallInteger",
+      "alias": "ResourceQuantity",
+      "sqlType": "sqlTypeOther",
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "ResourceStatus",
+      "type": "esriFieldTypeString",
+      "alias": "ResourceStatus",
+      "sqlType": "sqlTypeOther",
+      "length": 16,
+      "domain": {
+        "type": "codedValue",
+        "name": "ResourceStatus",
+        "mergePolicy": "esriMPTDefaultValue",
+        "splitPolicy": "esriSPTDefaultValue",
+        "description": "Resource Status (Initial, Update, Final)",
+        "codedValues": [
+          {
+            "name": "Initial Response",
+            "code": "Initial Response"
+          },
+          {
+            "name": "Daily",
+            "code": "Daily"
+          }
+        ]
+      },
+      "defaultValue": null
+    },
+    {
+      "name": "ResourceType",
+      "type": "esriFieldTypeString",
+      "alias": "ResourceType",
+      "sqlType": "sqlTypeOther",
+      "length": 60,
+      "domain": {
+        "type": "codedValue",
+        "name": "Fire_Resource_Type",
+        "mergePolicy": "esriMPTDefaultValue",
+        "splitPolicy": "esriSPTDefaultValue",
+        "description": "Fire_Resource_Type",
+        "codedValues": [
+          {
+            "name": "Heavy (Type 1)",
+            "code": "Heavy (Type 1)"
+          },
+          {
+            "name": "Light (Type 3)",
+            "code": "Light (Type 3)"
+          },
+          {
+            "name": "Medium (Type 2)",
+            "code": "Medium (Type 2)"
+          },
+          {
+            "name": "SEAT",
+            "code": "SEAT"
+          },
+          {
+            "name": "VLAT",
+            "code": "VLAT"
+          },
+          {
+            "name": "Air Attack Platform",
+            "code": "Air Attack Platform"
+          },
+          {
+            "name": "ASM",
+            "code": "ASM"
+          },
+          {
+            "name": "Lead Plane",
+            "code": "Lead Plane"
+          },
+          {
+            "name": "Reconnaissance Aircraft",
+            "code": "Reconnaissance Aircraft"
+          },
+          {
+            "name": "Smokejumper Aircraft",
+            "code": "Smokejumper Aircraft"
+          },
+          {
+            "name": "Helicopter, Type 1",
+            "code": "Helicopter, Type 1"
+          },
+          {
+            "name": "Helicopter, Type 2",
+            "code": "Helicopter, Type 2"
+          },
+          {
+            "name": "Helicopter, Type 3",
+            "code": "Helicopter, Type 3"
+          },
+          {
+            "name": "Handcrew, Type 1",
+            "code": "Handcrew, Type 1"
+          },
+          {
+            "name": "Handcrew, Type 2",
+            "code": "Handcrew, Type 2"
+          },
+          {
+            "name": "Handcrew, Type 2/IA",
+            "code": "Handcrew, Type 2/IA"
+          },
+          {
+            "name": "Crew, Camp",
+            "code": "Crew, Camp"
+          },
+          {
+            "name": "Fire Use Module",
+            "code": "Fire Use Module"
+          },
+          {
+            "name": "Helitack Module",
+            "code": "Helitack Module"
+          },
+          {
+            "name": "Individual Firefighter",
+            "code": "Individual Firefighter"
+          },
+          {
+            "name": "Individual Smokejumper",
+            "code": "Individual Smokejumper"
+          },
+          {
+            "name": "Rappeller Module",
+            "code": "Rappeller Module"
+          },
+          {
+            "name": "Fire",
+            "code": "Fire"
+          },
+          {
+            "name": "All Types",
+            "code": "All Types"
+          },
+          {
+            "name": "Engine, Type 1",
+            "code": "Engine, Type 1"
+          },
+          {
+            "name": "Engine, Type 2",
+            "code": "Engine, Type 2"
+          },
+          {
+            "name": "Engine, Type 3",
+            "code": "Engine, Type 3"
+          },
+          {
+            "name": "Engine, Type 4",
+            "code": "Engine, Type 4"
+          },
+          {
+            "name": "Engine, Type 5",
+            "code": "Engine, Type 5"
+          },
+          {
+            "name": "Engine, Type 6",
+            "code": "Engine, Type 6"
+          },
+          {
+            "name": "Engine, Type 7",
+            "code": "Engine, Type 7"
+          },
+          {
+            "name": "Other Engine Module",
+            "code": "Other Engine Module"
+          },
+          {
+            "name": "Masticator",
+            "code": "Masticator"
+          },
+          {
+            "name": "Boat",
+            "code": "Boat"
+          },
+          {
+            "name": "High Mobility Utility Vehicle",
+            "code": "High Mobility Utility Vehicle"
+          },
+          {
+            "name": "Low Ground Pressure Utility Vehicle",
+            "code": "Low Ground Pressure Utility Vehicle"
+          },
+          {
+            "name": "Trencher",
+            "code": "Trencher"
+          },
+          {
+            "name": "Skidgine",
+            "code": "Skidgine"
+          },
+          {
+            "name": "Track Vehicle",
+            "code": "Track Vehicle"
+          },
+          {
+            "name": "Tractor Plow, Type 1",
+            "code": "Tractor Plow, Type 1"
+          },
+          {
+            "name": "Tractor Plow, Type 2",
+            "code": "Tractor Plow, Type 2"
+          },
+          {
+            "name": "Tractor Plow, Type 3",
+            "code": "Tractor Plow, Type 3"
+          },
+          {
+            "name": "Tractor Plow, Type 4",
+            "code": "Tractor Plow, Type 4"
+          },
+          {
+            "name": "Tractor Plow, Type 5",
+            "code": "Tractor Plow, Type 5"
+          },
+          {
+            "name": "Tractor Plow, Type 6",
+            "code": "Tractor Plow, Type 6"
+          },
+          {
+            "name": "Support (All Types)",
+            "code": "Support (All Types)"
+          },
+          {
+            "name": "Tactical (All Types)",
+            "code": "Tactical (All Types)"
+          },
+          {
+            "name": "Individual Operations Overhead Personnel",
+            "code": "Individual Operations Overhead Personnel"
+          },
+          {
+            "name": "Individual Single Resource Personnel",
+            "code": "Individual Single Resource Personnel"
+          },
+          {
+            "name": "Canine, Bomb Squad",
+            "code": "Canine, Bomb Squad"
+          },
+          {
+            "name": "Canine, Narcotics",
+            "code": "Canine, Narcotics"
+          },
+          {
+            "name": "Canine, Police",
+            "code": "Canine, Police"
+          },
+          {
+            "name": "Canine, SAR",
+            "code": "Canine, SAR"
+          },
+          {
+            "name": "Cave Rescue Team",
+            "code": "Cave Rescue Team"
+          },
+          {
+            "name": "Medic Squad",
+            "code": "Medic Squad"
+          },
+          {
+            "name": "Mine Rescue Team",
+            "code": "Mine Rescue Team"
+          },
+          {
+            "name": "Mountain SAR Team",
+            "code": "Mountain SAR Team"
+          },
+          {
+            "name": "Technical Rescue Team",
+            "code": "Technical Rescue Team"
+          },
+          {
+            "name": "Underwater Search & Recovery Team",
+            "code": "Underwater Search & Recovery Team"
+          },
+          {
+            "name": "Urban SAR Team",
+            "code": "Urban SAR Team"
+          },
+          {
+            "name": "Water Rescue Team",
+            "code": "Water Rescue Team"
+          },
+          {
+            "name": "Aerial Apparatus",
+            "code": "Aerial Apparatus"
+          },
+          {
+            "name": "Air Supply Truck",
+            "code": "Air Supply Truck"
+          },
+          {
+            "name": "Ambulance",
+            "code": "Ambulance"
+          },
+          {
+            "name": "Crash Rescue (Aircraft)",
+            "code": "Crash Rescue (Aircraft)"
+          },
+          {
+            "name": "Decontamination Unit",
+            "code": "Decontamination Unit"
+          },
+          {
+            "name": "Food Dispensing Unit",
+            "code": "Food Dispensing Unit"
+          },
+          {
+            "name": "GIS Unit",
+            "code": "GIS Unit"
+          },
+          {
+            "name": "Hazardous Materials Unit",
+            "code": "Hazardous Materials Unit"
+          },
+          {
+            "name": "Heavy Rescue Unit",
+            "code": "Heavy Rescue Unit"
+          },
+          {
+            "name": "Illumination Unit (Lighting)",
+            "code": "Illumination Unit (Lighting)"
+          },
+          {
+            "name": "Laundry, Mobile",
+            "code": "Laundry, Mobile"
+          },
+          {
+            "name": "Mass Casualty Incident Trailer",
+            "code": "Mass Casualty Incident Trailer"
+          },
+          {
+            "name": "Mobile Communications Center",
+            "code": "Mobile Communications Center"
+          },
+          {
+            "name": "Mobile Coroner Unit",
+            "code": "Mobile Coroner Unit"
+          },
+          {
+            "name": "Mobile Kitchen Unit",
+            "code": "Mobile Kitchen Unit"
+          },
+          {
+            "name": "Quint, Combination",
+            "code": "Quint, Combination"
+          },
+          {
+            "name": "Rescue Unit",
+            "code": "Rescue Unit"
+          },
+          {
+            "name": "Rescue/Medical Unit",
+            "code": "Rescue/Medical Unit"
+          },
+          {
+            "name": "Salvage Unit",
+            "code": "Salvage Unit"
+          },
+          {
+            "name": "Shower, Mobile",
+            "code": "Shower, Mobile"
+          },
+          {
+            "name": "Transportation, Bus, Coach",
+            "code": "Transportation, Bus, Coach"
+          },
+          {
+            "name": "Truck, Hazmat",
+            "code": "Truck, Hazmat"
+          },
+          {
+            "name": "Water Purification Plant",
+            "code": "Water Purification Plant"
+          },
+          {
+            "name": "Tender, Potable Water",
+            "code": "Tender, Potable Water"
+          },
+          {
+            "name": "Skidder",
+            "code": "Skidder"
+          },
+          {
+            "name": "Excavator",
+            "code": "Excavator"
+          },
+          {
+            "name": "Feller Buncher",
+            "code": "Feller Buncher"
+          },
+          {
+            "name": "Pumper Cat",
+            "code": "Pumper Cat"
+          }
+        ]
+      },
+      "defaultValue": null
+    },
+    {
+      "name": "GlobalID",
+      "type": "esriFieldTypeGlobalID",
+      "alias": "GlobalID",
+      "sqlType": "sqlTypeOther",
+      "length": 38,
+      "domain": null,
+      "defaultValue": null
+    }
+  ],
+  "features": [
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14272384,
+        "IrwinIRSID": "9655448d-3592-4e00-bef5-d3238d40c4a7",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782521244410,
+        "ModifiedOnDateTime": 1783029960300,
+        "ResourceQuantityCurrentAsOf": 1783027800000,
+        "ResourceAgency": "BLM",
+        "ResourceCategory": "Engine",
+        "ResourceKind": "Equipment",
+        "ResourcePersonnelQuantity": 3,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Engine, Type 3",
+        "GlobalID": "42eb634a-6805-4755-9cd9-3ce284aab5fe"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14272385,
+        "IrwinIRSID": "102e1207-687a-409e-97a2-b5c0ed7d25f4",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782521244683,
+        "ModifiedOnDateTime": 1783122191467,
+        "ResourceQuantityCurrentAsOf": 1783116000000,
+        "ResourceAgency": "BLM",
+        "ResourceCategory": "Engine",
+        "ResourceKind": "Equipment",
+        "ResourcePersonnelQuantity": 3,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Engine, Type 6",
+        "GlobalID": "7e302148-7a80-4151-be5e-d4575d965ff4"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14272386,
+        "IrwinIRSID": "08e612f1-4703-4997-8a1a-d7847a91e87b",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782521244957,
+        "ModifiedOnDateTime": 1786305186233,
+        "ResourceQuantityCurrentAsOf": 1786302000000,
+        "ResourceAgency": "BLM",
+        "ResourceCategory": "Single Resource",
+        "ResourceKind": "Overhead",
+        "ResourcePersonnelQuantity": 2,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 2,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Individual Single Resource Personnel",
+        "GlobalID": "98ed2d28-723f-460d-919b-33046d174d61"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14272387,
+        "IrwinIRSID": "d03977b0-bcb2-4364-bca7-cc4515982f1f",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782521245263,
+        "ModifiedOnDateTime": 1784242913367,
+        "ResourceQuantityCurrentAsOf": 1784242800000,
+        "ResourceAgency": "FS",
+        "ResourceCategory": "Engine",
+        "ResourceKind": "Equipment",
+        "ResourcePersonnelQuantity": 7,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Engine, Type 3",
+        "GlobalID": "286cfcf6-4253-4ceb-8ee1-d5b0bf6f5fc3"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14272388,
+        "IrwinIRSID": "41dcb8f8-b055-4b26-b3e9-12c4c87572e1",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782521245537,
+        "ModifiedOnDateTime": 1782604832800,
+        "ResourceQuantityCurrentAsOf": 1782604800000,
+        "ResourceAgency": "FS",
+        "ResourceCategory": "Airtanker",
+        "ResourceKind": "Aircraft",
+        "ResourcePersonnelQuantity": 2,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 2,
+        "ResourceStatus": "Daily",
+        "ResourceType": "SEAT",
+        "GlobalID": "dc0fd3bc-4832-4608-b051-87885d7cd710"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14272389,
+        "IrwinIRSID": "053da023-b44e-4f98-92b3-f9f56c29b0d5",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782521245800,
+        "ModifiedOnDateTime": 1782604833130,
+        "ResourceQuantityCurrentAsOf": 1782604800000,
+        "ResourceAgency": "FS",
+        "ResourceCategory": "Airtanker",
+        "ResourceKind": "Aircraft",
+        "ResourcePersonnelQuantity": 9,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 3,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Heavy (Type 1)",
+        "GlobalID": "552e0d2e-44b2-4205-80b7-09d44fb9621b"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14272390,
+        "IrwinIRSID": "58613637-271d-49b7-b1f9-e12a09cf3919",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782521246080,
+        "ModifiedOnDateTime": 1786055260277,
+        "ResourceQuantityCurrentAsOf": 1786053600000,
+        "ResourceAgency": "FS",
+        "ResourceCategory": "Single Resource",
+        "ResourceKind": "Overhead",
+        "ResourcePersonnelQuantity": 39,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 39,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Individual Single Resource Personnel",
+        "GlobalID": "e3bacb01-ccc1-4da8-93e5-0980a527c69a"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14272660,
+        "IrwinIRSID": "8462855e-a396-4154-9a5d-45345cc43ba9",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782690123653,
+        "ModifiedOnDateTime": 1782775882600,
+        "ResourceQuantityCurrentAsOf": 1782775800000,
+        "ResourceAgency": "C&L",
+        "ResourceCategory": "Watertender",
+        "ResourceKind": "Equipment",
+        "ResourcePersonnelQuantity": 4,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 4,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Support (All Types)",
+        "GlobalID": "9f8e98ea-4bff-4e23-b69e-bdb8ea7938ec"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14272661,
+        "IrwinIRSID": "816e0279-304a-4cb4-af53-37efa9acc4b0",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782690123933,
+        "ModifiedOnDateTime": 1782862433760,
+        "ResourceQuantityCurrentAsOf": 1782860400000,
+        "ResourceAgency": "C&L",
+        "ResourceCategory": "Single Resource",
+        "ResourceKind": "Overhead",
+        "ResourcePersonnelQuantity": 0,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 0,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Individual Single Resource Personnel",
+        "GlobalID": "6c806bc8-a2dc-4f42-93fc-a83b440a74de"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14272662,
+        "IrwinIRSID": "a6619438-55ec-4897-8e0c-9606e8177565",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782690124217,
+        "ModifiedOnDateTime": 1785021063757,
+        "ResourceQuantityCurrentAsOf": 1785020400000,
+        "ResourceAgency": "FS",
+        "ResourceCategory": "Engine",
+        "ResourceKind": "Equipment",
+        "ResourcePersonnelQuantity": 7,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Engine, Type 6",
+        "GlobalID": "dde26dd1-bf29-47ee-88bb-e1ce863acacf"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14272663,
+        "IrwinIRSID": "833b10bc-08ac-4ace-8cd6-5627b075766f",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782690125197,
+        "ModifiedOnDateTime": 1784674898753,
+        "ResourceQuantityCurrentAsOf": 1784674800000,
+        "ResourceAgency": "PRI",
+        "ResourceCategory": "Handcrew",
+        "ResourceKind": "Crews",
+        "ResourcePersonnelQuantity": 80,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 4,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Handcrew, Type 2",
+        "GlobalID": "95c207b5-3b8f-464d-841a-bb2af56ecef2"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14272664,
+        "IrwinIRSID": "e3c22787-0cc3-4e3d-b413-5b79119fbece",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782690125470,
+        "ModifiedOnDateTime": 1785103982913,
+        "ResourceQuantityCurrentAsOf": 1785103200000,
+        "ResourceAgency": "PRI",
+        "ResourceCategory": "Helicopter",
+        "ResourceKind": "Aircraft",
+        "ResourcePersonnelQuantity": 1,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Helicopter, Type 1",
+        "GlobalID": "09871c86-c20b-4797-82a9-4b9b040ecc32"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14272665,
+        "IrwinIRSID": "dda58bf7-4063-4779-8966-d2b31ebaa950",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782690125750,
+        "ModifiedOnDateTime": 1785196665327,
+        "ResourceQuantityCurrentAsOf": 1785191400000,
+        "ResourceAgency": "PRI",
+        "ResourceCategory": "Helicopter",
+        "ResourceKind": "Aircraft",
+        "ResourcePersonnelQuantity": 6,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Helicopter, Type 2",
+        "GlobalID": "a6c6cd41-51fc-473b-9ae9-3afd3cb0fdd9"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14272666,
+        "IrwinIRSID": "7e20ed51-10d9-46d0-aa77-567f98a31238",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782690126030,
+        "ModifiedOnDateTime": 1786310168437,
+        "ResourceQuantityCurrentAsOf": 1786309200000,
+        "ResourceAgency": "PRI",
+        "ResourceCategory": "Single Resource",
+        "ResourceKind": "Overhead",
+        "ResourcePersonnelQuantity": 1,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Individual Single Resource Personnel",
+        "GlobalID": "6fd4b2d0-c93c-4520-b1b4-9e5363693bfd"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14272810,
+        "IrwinIRSID": "cea6dbd3-4088-4827-b9b9-c27ab90a4ece",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782855899323,
+        "ModifiedOnDateTime": 1783029962730,
+        "ResourceQuantityCurrentAsOf": 1783027800000,
+        "ResourceAgency": "FS",
+        "ResourceCategory": "Helicopter",
+        "ResourceKind": "Aircraft",
+        "ResourcePersonnelQuantity": 1,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 2,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Helicopter, Type 1",
+        "GlobalID": "12e2a12f-edc8-4dd7-84e8-71f83c721980"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14272811,
+        "IrwinIRSID": "2b90e70d-0607-4eea-965d-0685dbf0c674",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782855899623,
+        "ModifiedOnDateTime": 1784588846720,
+        "ResourceQuantityCurrentAsOf": 1784588400000,
+        "ResourceAgency": "FS",
+        "ResourceCategory": "Helicopter",
+        "ResourceKind": "Aircraft",
+        "ResourcePersonnelQuantity": 13,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Helicopter, Type 2",
+        "GlobalID": "e2cb3c36-5c14-461c-85dc-d872203e1371"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14272812,
+        "IrwinIRSID": "df9c835d-97ef-40f6-8eb0-981b884e0c12",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782855899910,
+        "ModifiedOnDateTime": 1783029963497,
+        "ResourceQuantityCurrentAsOf": 1783027800000,
+        "ResourceAgency": "FS",
+        "ResourceCategory": "Helicopter",
+        "ResourceKind": "Aircraft",
+        "ResourcePersonnelQuantity": 2,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Helicopter, Type 3",
+        "GlobalID": "110136b4-ffe4-4091-b6b7-efe54ab599b1"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14272813,
+        "IrwinIRSID": "fe179801-d95c-4656-9b73-519d466076d8",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782855901363,
+        "ModifiedOnDateTime": 1786577616610,
+        "ResourceQuantityCurrentAsOf": 1786561200000,
+        "ResourceAgency": "NPS",
+        "ResourceCategory": "Single Resource",
+        "ResourceKind": "Overhead",
+        "ResourcePersonnelQuantity": 2,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 2,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Individual Single Resource Personnel",
+        "GlobalID": "64e5a969-5b37-43a3-a7b2-3f7facfd93ee"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14272814,
+        "IrwinIRSID": "bdd5ba83-9f7e-400b-8160-f3d927fc44da",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782855902043,
+        "ModifiedOnDateTime": 1783984866180,
+        "ResourceQuantityCurrentAsOf": 1783984500000,
+        "ResourceAgency": "PRI",
+        "ResourceCategory": "Handcrew",
+        "ResourceKind": "Crews",
+        "ResourcePersonnelQuantity": 20,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Handcrew, Type 2/IA",
+        "GlobalID": "7771ae05-1cdb-4d50-9403-4c2f1328a9d6"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14272815,
+        "IrwinIRSID": "0470b25c-7bb3-42da-ad98-e6fdf0a28545",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782855903110,
+        "ModifiedOnDateTime": 1784503859133,
+        "ResourceQuantityCurrentAsOf": 1784502900000,
+        "ResourceAgency": "PRI",
+        "ResourceCategory": "Engine",
+        "ResourceKind": "Equipment",
+        "ResourcePersonnelQuantity": 18,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 6,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Engine, Type 3",
+        "GlobalID": "33c8d0ff-51e4-40c3-a628-066c52322bcd"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14272816,
+        "IrwinIRSID": "3e0f6c62-002c-49cd-a0b6-b9077f3ea841",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782855903390,
+        "ModifiedOnDateTime": 1784503859467,
+        "ResourceQuantityCurrentAsOf": 1784502900000,
+        "ResourceAgency": "PRI",
+        "ResourceCategory": "Engine",
+        "ResourceKind": "Equipment",
+        "ResourcePersonnelQuantity": 3,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Engine, Type 4",
+        "GlobalID": "982b29b9-6042-404a-9f76-2ba10836a543"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14272817,
+        "IrwinIRSID": "ebab4293-d07a-49bf-8088-aaf7a6a8d3b3",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782855903700,
+        "ModifiedOnDateTime": 1784588851393,
+        "ResourceQuantityCurrentAsOf": 1784588400000,
+        "ResourceAgency": "PRI",
+        "ResourceCategory": "Engine",
+        "ResourceKind": "Equipment",
+        "ResourcePersonnelQuantity": 3,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Engine, Type 6",
+        "GlobalID": "42ea573f-f356-48c5-a926-ad6075af0b43"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14272818,
+        "IrwinIRSID": "2d6ea842-0ea0-4e7a-9c93-ab7c60bb0692",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782855904057,
+        "ModifiedOnDateTime": 1786577617623,
+        "ResourceQuantityCurrentAsOf": 1786561200000,
+        "ResourceAgency": "PRI",
+        "ResourceCategory": "Watertender",
+        "ResourceKind": "Equipment",
+        "ResourcePersonnelQuantity": 10,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 5,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Support (All Types)",
+        "GlobalID": "1273bd14-a324-422a-9bb7-72880f067f92"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14272819,
+        "IrwinIRSID": "58b76f0e-afa6-491d-b2ab-5f967bccac42",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782855904697,
+        "ModifiedOnDateTime": 1786305188640,
+        "ResourceQuantityCurrentAsOf": 1786302000000,
+        "ResourceAgency": "ST",
+        "ResourceCategory": "Single Resource",
+        "ResourceKind": "Overhead",
+        "ResourcePersonnelQuantity": 5,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 5,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Individual Single Resource Personnel",
+        "GlobalID": "b6e5032a-1afc-4048-a501-e066c5706f06"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14273968,
+        "IrwinIRSID": "3119a185-a089-4dac-9624-2fdeb659c383",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782949738770,
+        "ModifiedOnDateTime": 1784588844260,
+        "ResourceQuantityCurrentAsOf": 1784588400000,
+        "ResourceAgency": "BIA",
+        "ResourceCategory": "Other",
+        "ResourceKind": "Crews",
+        "ResourcePersonnelQuantity": 11,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Crew, Camp",
+        "GlobalID": "b9be17c5-8e6a-4277-ac22-b4989a28d930"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14273969,
+        "IrwinIRSID": "1cfed2a2-c6dd-4cf2-8e18-9ea674ff0fda",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782949739093,
+        "ModifiedOnDateTime": 1784071603003,
+        "ResourceQuantityCurrentAsOf": 1784070900000,
+        "ResourceAgency": "BIA",
+        "ResourceCategory": "Engine",
+        "ResourceKind": "Equipment",
+        "ResourcePersonnelQuantity": 3,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Engine, Type 6",
+        "GlobalID": "af8878bb-d67e-4a46-aec4-7dae30c8e97a"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14273970,
+        "IrwinIRSID": "93e07c25-503e-4066-b94c-b557337cd162",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782949739407,
+        "ModifiedOnDateTime": 1784674893160,
+        "ResourceQuantityCurrentAsOf": 1784674800000,
+        "ResourceAgency": "BIA",
+        "ResourceCategory": "Single Resource",
+        "ResourceKind": "Overhead",
+        "ResourcePersonnelQuantity": 0,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 0,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Individual Single Resource Personnel",
+        "GlobalID": "93446469-faeb-421b-994b-f8d934fe18e2"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14273971,
+        "IrwinIRSID": "980a33d8-b53a-498a-9389-e203d5f9c05c",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782949740920,
+        "ModifiedOnDateTime": 1784848007670,
+        "ResourceQuantityCurrentAsOf": 1784847600000,
+        "ResourceAgency": "FS",
+        "ResourceCategory": "Handcrew",
+        "ResourceKind": "Crews",
+        "ResourcePersonnelQuantity": 25,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Handcrew, Type 2/IA",
+        "GlobalID": "37ea011d-b437-4669-a15a-9df25ccdb43a"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14273972,
+        "IrwinIRSID": "fc3b752d-c284-48fa-a761-503c662c5e4b",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782949741507,
+        "ModifiedOnDateTime": 1785103981547,
+        "ResourceQuantityCurrentAsOf": 1785103200000,
+        "ResourceAgency": "FS",
+        "ResourceCategory": "Other",
+        "ResourceKind": "Crews",
+        "ResourcePersonnelQuantity": 20,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 2,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Crew, Camp",
+        "GlobalID": "42f55e38-43ad-4b60-947b-b3f42b22b5e6"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14273973,
+        "IrwinIRSID": "bd9a241f-0387-41a1-be2c-59d67770c652",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782949744153,
+        "ModifiedOnDateTime": 1786055260690,
+        "ResourceQuantityCurrentAsOf": 1786053600000,
+        "ResourceAgency": "FWS",
+        "ResourceCategory": "Single Resource",
+        "ResourceKind": "Overhead",
+        "ResourcePersonnelQuantity": 0,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 0,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Individual Single Resource Personnel",
+        "GlobalID": "30ee090b-c444-4b87-a76a-718b2090f9ca"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14273974,
+        "IrwinIRSID": "7e2ca5e5-e02c-4ffa-adda-1ab3ba49e6df",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782949744887,
+        "ModifiedOnDateTime": 1784848003177,
+        "ResourceQuantityCurrentAsOf": 1784847600000,
+        "ResourceAgency": "NWS",
+        "ResourceCategory": "Single Resource",
+        "ResourceKind": "Overhead",
+        "ResourcePersonnelQuantity": 1,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Individual Single Resource Personnel",
+        "GlobalID": "16c79b64-46fa-4df5-8c2d-4da22bab16c0"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14273975,
+        "IrwinIRSID": "18b152c2-98e5-4e40-862d-c7ae975db906",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782949745203,
+        "ModifiedOnDateTime": 1785975982563,
+        "ResourceQuantityCurrentAsOf": 1785971700000,
+        "ResourceAgency": "PRI",
+        "ResourceCategory": "Helicopter",
+        "ResourceKind": "Aircraft",
+        "ResourcePersonnelQuantity": 6,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Helicopter, Type 3",
+        "GlobalID": "c1a05884-d4ab-4540-9e6c-7790964d6a4e"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14273976,
+        "IrwinIRSID": "15b960ba-f843-4ba7-9966-931262fbe0e6",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782949747317,
+        "ModifiedOnDateTime": 1784588851807,
+        "ResourceQuantityCurrentAsOf": 1784588400000,
+        "ResourceAgency": "PRI",
+        "ResourceCategory": "Dozer",
+        "ResourceKind": "Equipment",
+        "ResourcePersonnelQuantity": 0,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "All Types",
+        "GlobalID": "ac41f376-1071-4eee-a8eb-3b390d3d419e"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14273977,
+        "IrwinIRSID": "4edf58c4-51ea-4d1f-bfc6-c4ee564cde07",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1782949749563,
+        "ModifiedOnDateTime": 1785021067207,
+        "ResourceQuantityCurrentAsOf": 1785020400000,
+        "ResourceAgency": "ST",
+        "ResourceCategory": "Engine",
+        "ResourceKind": "Equipment",
+        "ResourcePersonnelQuantity": 4,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Engine, Type 2",
+        "GlobalID": "44660cf1-a7e9-45a3-b4c4-b8d1b4e81776"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14274041,
+        "IrwinIRSID": "07d12fcc-1738-442b-80e4-55eaf6a05d31",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1783029959923,
+        "ModifiedOnDateTime": 1783727295403,
+        "ResourceQuantityCurrentAsOf": 1783727100000,
+        "ResourceAgency": "BLM",
+        "ResourceCategory": "Dozer",
+        "ResourceKind": "Equipment",
+        "ResourcePersonnelQuantity": 2,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "All Types",
+        "GlobalID": "5d090a0d-721e-4b33-be08-84cd50879371"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14274042,
+        "IrwinIRSID": "0ac1b3e8-d088-477a-b5a7-9bb0ee5f72cd",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1783029961347,
+        "ModifiedOnDateTime": 1784503852790,
+        "ResourceQuantityCurrentAsOf": 1784502900000,
+        "ResourceAgency": "FS",
+        "ResourceCategory": "Handcrew",
+        "ResourceKind": "Crews",
+        "ResourcePersonnelQuantity": 0,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 0,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Handcrew, Type 1",
+        "GlobalID": "948f2ecb-99fe-4e9d-8985-6ba797aca067"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14274043,
+        "IrwinIRSID": "944c361b-6f3a-476a-93b1-01bc62d7af53",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1783029970160,
+        "ModifiedOnDateTime": 1784156558533,
+        "ResourceQuantityCurrentAsOf": 1784156400000,
+        "ResourceAgency": "ST",
+        "ResourceCategory": "Handcrew",
+        "ResourceKind": "Crews",
+        "ResourcePersonnelQuantity": 22,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Handcrew, Type 2/IA",
+        "GlobalID": "c50ca773-775f-48e7-82d0-c36f3041a0f3"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14274044,
+        "IrwinIRSID": "be07d88c-c484-4fe8-b96e-a91511497a95",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1783029970457,
+        "ModifiedOnDateTime": 1784588854253,
+        "ResourceQuantityCurrentAsOf": 1784588400000,
+        "ResourceAgency": "ST",
+        "ResourceCategory": "Engine",
+        "ResourceKind": "Equipment",
+        "ResourcePersonnelQuantity": 0,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 0,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Engine, Type 6",
+        "GlobalID": "dba562b0-d147-40b7-a7a3-6a3261a0843c"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14274045,
+        "IrwinIRSID": "b1ea3877-691f-4811-8632-0d1574e1fee4",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1783029971097,
+        "ModifiedOnDateTime": 1784588854670,
+        "ResourceQuantityCurrentAsOf": 1784588400000,
+        "ResourceAgency": "ST",
+        "ResourceCategory": "Watertender",
+        "ResourceKind": "Equipment",
+        "ResourcePersonnelQuantity": 1,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Support (All Types)",
+        "GlobalID": "2750974d-a260-44fe-96e0-94442f1c74f3"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14274222,
+        "IrwinIRSID": "85b8f942-2cfe-4c6e-99e4-c7281d267439",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1783207419857,
+        "ModifiedOnDateTime": 1784156565170,
+        "ResourceQuantityCurrentAsOf": 1784156400000,
+        "ResourceAgency": "FS",
+        "ResourceCategory": "Heavy",
+        "ResourceKind": "Equipment",
+        "ResourcePersonnelQuantity": 2,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Masticator",
+        "GlobalID": "24f43954-1500-4470-a7a8-a371224a9543"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14274223,
+        "IrwinIRSID": "0dfeb71b-73ca-4e08-a9b7-afdde296a7a8",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1783207423793,
+        "ModifiedOnDateTime": 1784242933327,
+        "ResourceQuantityCurrentAsOf": 1784242800000,
+        "ResourceAgency": "PRI",
+        "ResourceCategory": "Heavy",
+        "ResourceKind": "Equipment",
+        "ResourcePersonnelQuantity": 4,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 2,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Masticator",
+        "GlobalID": "e2449f4e-a76b-472a-a370-5f1ebc4f24d6"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14274325,
+        "IrwinIRSID": "627af43f-9adb-4f17-89e8-fb5cbda2ecdf",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1783295245160,
+        "ModifiedOnDateTime": 1784242933910,
+        "ResourceQuantityCurrentAsOf": 1784242800000,
+        "ResourceAgency": "PRI",
+        "ResourceCategory": "Other Equipment",
+        "ResourceKind": "Equipment",
+        "ResourcePersonnelQuantity": 2,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Skidgine",
+        "GlobalID": "235bb81a-a7fd-42fd-9633-098a13f89942"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14274381,
+        "IrwinIRSID": "0b7433df-b72c-44c4-9537-b0ec66ac1e9d",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1783376904827,
+        "ModifiedOnDateTime": 1784848004133,
+        "ResourceQuantityCurrentAsOf": 1784847600000,
+        "ResourceAgency": "OTHR",
+        "ResourceCategory": "Single Resource",
+        "ResourceKind": "Overhead",
+        "ResourcePersonnelQuantity": 0,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 0,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Individual Single Resource Personnel",
+        "GlobalID": "0c1b2097-48be-4ffd-a5f2-f6b095d63beb"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14274382,
+        "IrwinIRSID": "acbe731b-0c47-41bd-8c77-0a50e360861b",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1783376912847,
+        "ModifiedOnDateTime": 1784588855900,
+        "ResourceQuantityCurrentAsOf": 1784588400000,
+        "ResourceAgency": "USGS",
+        "ResourceCategory": "Single Resource",
+        "ResourceKind": "Overhead",
+        "ResourcePersonnelQuantity": 0,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 0,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Individual Single Resource Personnel",
+        "GlobalID": "0c273091-029c-434a-8272-68acaf263c02"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14274486,
+        "IrwinIRSID": "4d5c0ff4-d746-40a3-a0ad-c4fcc7e131f4",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1783466794950,
+        "ModifiedOnDateTime": 1784588845637,
+        "ResourceQuantityCurrentAsOf": 1784588400000,
+        "ResourceAgency": "FS",
+        "ResourceCategory": "Handcrew",
+        "ResourceKind": "Crews",
+        "ResourcePersonnelQuantity": 21,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Handcrew, Type 2",
+        "GlobalID": "c485f349-53cc-4c6d-a632-3e65b06c0c6f"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14274487,
+        "IrwinIRSID": "d067cae3-141d-4e48-b92c-efeed005ab53",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1783466795950,
+        "ModifiedOnDateTime": 1784588852397,
+        "ResourceQuantityCurrentAsOf": 1784588400000,
+        "ResourceAgency": "PRI",
+        "ResourceCategory": "Watertender",
+        "ResourceKind": "Equipment",
+        "ResourcePersonnelQuantity": 2,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Tactical (All Types)",
+        "GlobalID": "e0a355fc-b4e7-4fb9-8d17-1111df70b124"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14274488,
+        "IrwinIRSID": "cf89272e-3b71-4c6e-9248-cefdfb74f05e",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1783466806537,
+        "ModifiedOnDateTime": 1784503862157,
+        "ResourceQuantityCurrentAsOf": 1784502900000,
+        "ResourceAgency": "ST",
+        "ResourceCategory": "Handcrew",
+        "ResourceKind": "Crews",
+        "ResourcePersonnelQuantity": 21,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Handcrew, Type 1",
+        "GlobalID": "e15b8b2f-4b9a-4e82-8d0f-72fcc9832c44"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14274489,
+        "IrwinIRSID": "862f81e9-1393-4c3a-b822-1d3b1d3a002f",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1783466807237,
+        "ModifiedOnDateTime": 1783984871727,
+        "ResourceQuantityCurrentAsOf": 1783984500000,
+        "ResourceAgency": "ST",
+        "ResourceCategory": "Engine",
+        "ResourceKind": "Equipment",
+        "ResourcePersonnelQuantity": 24,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 6,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Engine, Type 1",
+        "GlobalID": "3a7b2534-c390-4671-919e-304efc250c8d"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14274561,
+        "IrwinIRSID": "011cf7b4-3cb3-4dd4-9c28-9970bb45e3c0",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1783553516800,
+        "ModifiedOnDateTime": 1784935037533,
+        "ResourceQuantityCurrentAsOf": 1784934000000,
+        "ResourceAgency": "FS",
+        "ResourceCategory": "Helicopter",
+        "ResourceKind": "Aircraft",
+        "ResourcePersonnelQuantity": 6,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Helicopter, Type 3",
+        "GlobalID": "195c99e5-f65f-4b12-9275-43f391f1f4f4"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14274656,
+        "IrwinIRSID": "9eaef737-765a-4079-b190-2cc5dc4c073f",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1783639237403,
+        "ModifiedOnDateTime": 1783984859820,
+        "ResourceQuantityCurrentAsOf": 1783984500000,
+        "ResourceAgency": "BLM",
+        "ResourceCategory": "Handcrew",
+        "ResourceKind": "Crews",
+        "ResourcePersonnelQuantity": 22,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Handcrew, Type 1",
+        "GlobalID": "7eceb4a9-0f9a-4be1-aa51-ae34fd08627b"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14274765,
+        "IrwinIRSID": "1dc36d75-badc-4c0e-89a2-e1b83255b7e4",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1783727294743,
+        "ModifiedOnDateTime": 1784071603693,
+        "ResourceQuantityCurrentAsOf": 1784070900000,
+        "ResourceAgency": "BLM",
+        "ResourceCategory": "Handcrew",
+        "ResourceKind": "Crews",
+        "ResourcePersonnelQuantity": 22,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Handcrew, Type 2/IA",
+        "GlobalID": "17383b21-8cb0-4eaf-89cd-a1ab8fb2fa3f"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14275440,
+        "IrwinIRSID": "e5f7562a-2bdc-45b9-b435-6d31b832e8da",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1784242904103,
+        "ModifiedOnDateTime": 1784762756207,
+        "ResourceQuantityCurrentAsOf": 1784762100000,
+        "ResourceAgency": "BLM",
+        "ResourceCategory": "Other",
+        "ResourceKind": "Crews",
+        "ResourcePersonnelQuantity": 11,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 2,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Crew, Camp",
+        "GlobalID": "bc9a599b-b2ff-4432-8f2c-d46261315d59"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14275595,
+        "IrwinIRSID": "d89104d1-5f31-471a-b491-b44edd28a374",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1784330262443,
+        "ModifiedOnDateTime": 1785455780480,
+        "ResourceQuantityCurrentAsOf": 1785445200000,
+        "ResourceAgency": "ST",
+        "ResourceCategory": "Handcrew",
+        "ResourceKind": "Crews",
+        "ResourcePersonnelQuantity": 19,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Handcrew, Type 2/IA",
+        "GlobalID": "d06d605f-7f08-4cbb-8baa-4e75ffb1783a"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14276319,
+        "IrwinIRSID": "5bf1edc2-d6bf-47e4-9432-67f83b111a10",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1784674893480,
+        "ModifiedOnDateTime": 1784674893480,
+        "ResourceQuantityCurrentAsOf": 1784674800000,
+        "ResourceAgency": "BLM",
+        "ResourceCategory": "Handcrew",
+        "ResourceKind": "Crews",
+        "ResourcePersonnelQuantity": 22,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Handcrew, Type 1",
+        "GlobalID": "ce467096-33ea-4bfb-b120-a96c9a5d76b0"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14277059,
+        "IrwinIRSID": "a25cc0ef-3dca-40fb-82b5-f4ebf90d3aa2",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1785021067840,
+        "ModifiedOnDateTime": 1786055262587,
+        "ResourceQuantityCurrentAsOf": 1786053600000,
+        "ResourceAgency": "ST",
+        "ResourceCategory": "Watertender",
+        "ResourceKind": "Equipment",
+        "ResourcePersonnelQuantity": 0,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 4,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Support (All Types)",
+        "GlobalID": "c696547f-a167-4771-9bae-ab44ef117f6f"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14278065,
+        "IrwinIRSID": "2c89dcd4-2278-4651-9c85-dbfffa8215e2",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1785368445950,
+        "ModifiedOnDateTime": 1785975982213,
+        "ResourceQuantityCurrentAsOf": 1785971700000,
+        "ResourceAgency": "PRI",
+        "ResourceCategory": "Helicopter",
+        "ResourceKind": "Aircraft",
+        "ResourcePersonnelQuantity": 6,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Helicopter, Type 2",
+        "GlobalID": "c9e6f65b-bdac-47f5-8dd3-4efec9f18bce"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14278555,
+        "IrwinIRSID": "8112b5ac-d1fc-4db3-a4be-9cb71e2c9c4e",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1785621160473,
+        "ModifiedOnDateTime": 1786305186563,
+        "ResourceQuantityCurrentAsOf": 1786302000000,
+        "ResourceAgency": "BOR",
+        "ResourceCategory": "Single Resource",
+        "ResourceKind": "Overhead",
+        "ResourcePersonnelQuantity": 1,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Individual Single Resource Personnel",
+        "GlobalID": "af913834-a4b8-4fa9-ac76-012a73b06c5f"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14278556,
+        "IrwinIRSID": "138c7ff9-96fe-4789-9022-c057013037d0",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1785621160803,
+        "ModifiedOnDateTime": 1785975980730,
+        "ResourceQuantityCurrentAsOf": 1785971700000,
+        "ResourceAgency": "FS",
+        "ResourceCategory": "Handcrew",
+        "ResourceKind": "Crews",
+        "ResourcePersonnelQuantity": 20,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Handcrew, Type 2",
+        "GlobalID": "aa2e040b-70dc-4063-bd44-7db0d404cdd1"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14278557,
+        "IrwinIRSID": "4a7b381d-7232-44c2-a183-131f8225a424",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1785621161047,
+        "ModifiedOnDateTime": 1785885006650,
+        "ResourceQuantityCurrentAsOf": 1785882600000,
+        "ResourceAgency": "FS",
+        "ResourceCategory": "Helicopter",
+        "ResourceKind": "Aircraft",
+        "ResourcePersonnelQuantity": 6,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Helicopter, Type 3",
+        "GlobalID": "62215a05-0336-4ec6-bf85-dc4f59b7a1f5"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14278558,
+        "IrwinIRSID": "e9670c17-2cc4-4296-b130-0cc2e5f5e92a",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1785621162193,
+        "ModifiedOnDateTime": 1785975981813,
+        "ResourceQuantityCurrentAsOf": 1785971700000,
+        "ResourceAgency": "PRI",
+        "ResourceCategory": "Helicopter",
+        "ResourceKind": "Aircraft",
+        "ResourcePersonnelQuantity": 3,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 4,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Helicopter, Type 1",
+        "GlobalID": "928b5625-f8df-4ef0-a7a4-68271f10cade"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14279872,
+        "IrwinIRSID": "83ddf555-22a9-48d2-8aa5-503f96662c98",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1786139781363,
+        "ModifiedOnDateTime": 1786577619420,
+        "ResourceQuantityCurrentAsOf": 1786561200000,
+        "ResourceAgency": "USFS",
+        "ResourceCategory": "Single Resource",
+        "ResourceKind": "Overhead",
+        "ResourcePersonnelQuantity": 37,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 37,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Individual Single Resource Personnel",
+        "GlobalID": "168d5c35-0f19-4e29-bd10-56aa84ae1f56"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14280126,
+        "IrwinIRSID": "a0e76ee0-6080-42ef-a2ca-25760a29930e",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1786230559250,
+        "ModifiedOnDateTime": 1786577617113,
+        "ResourceQuantityCurrentAsOf": 1786561200000,
+        "ResourceAgency": "PRI",
+        "ResourceCategory": "Engine",
+        "ResourceKind": "Equipment",
+        "ResourcePersonnelQuantity": 3,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Engine, Type 6",
+        "GlobalID": "e2ee47c7-b58f-43e4-b466-c1952e7cb2ff"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14280127,
+        "IrwinIRSID": "e47c5270-ba66-4c73-8606-534f7406bf82",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1786230560147,
+        "ModifiedOnDateTime": 1786577618130,
+        "ResourceQuantityCurrentAsOf": 1786561200000,
+        "ResourceAgency": "ST",
+        "ResourceCategory": "Engine",
+        "ResourceKind": "Equipment",
+        "ResourcePersonnelQuantity": 9,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 3,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Engine, Type 6",
+        "GlobalID": "14129a73-9d0a-4d5a-b404-48842cd6403c"
+      }
+    },
+    {
+      "attributes": {
+        "IrwinID": "8fce6c19-9d6f-4500-af34-9c0597dceba7",
+        "CreatedBySystem": "ics209",
+        "OBJECTID": 14280554,
+        "IrwinIRSID": "73ab1ee8-d7c8-4e17-88e8-5e7415460359",
+        "ModifiedBySystem": "ics209",
+        "CreatedOnDateTime": 1786399127800,
+        "ModifiedOnDateTime": 1786577618840,
+        "ResourceQuantityCurrentAsOf": 1786561200000,
+        "ResourceAgency": "ST",
+        "ResourceCategory": "Single Resource",
+        "ResourceKind": "Overhead",
+        "ResourcePersonnelQuantity": 1,
+        "ResourceProvider": "UTMLF",
+        "ResourceQuantity": 1,
+        "ResourceStatus": "Daily",
+        "ResourceType": "Individual Single Resource Personnel",
+        "GlobalID": "7330968e-0714-4f1b-ad0e-74f5e09acdb8"
+      }
+    }
+  ]
+}

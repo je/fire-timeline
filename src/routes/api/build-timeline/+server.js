@@ -61,9 +61,15 @@ export async function POST({ request, platform }) {
         }
         pushLog("IH_QUERY", `Found ${ihData.features.length} trace records.`);
 
-        const firstFeatureAttr = ihData.features[0].attributes;
-        const irwinid = firstFeatureAttr.IrwinID;
-        const incidentName = firstFeatureAttr.IncidentName?.trim() || ufireid;
+        const latestFeature = ihData.features.reduce((latest, feature) => {
+            if (!latest) return feature;
+            return (feature.attributes?.GDB_FROM_DATE || 0) > (latest.attributes?.GDB_FROM_DATE || 0)
+                ? feature
+                : latest;
+        }, null);
+        const latestFeatureAttr = latestFeature?.attributes || {};
+        const irwinid = latestFeatureAttr.IrwinID;
+        const incidentName = latestFeatureAttr.IncidentName?.trim() || ufireid;
         pushLog("DATA_CLEAN", `Target localized name: "${incidentName}". IrwinID string: ${irwinid}`);
 
         let ihMap = new Map();
@@ -73,7 +79,7 @@ export async function POST({ request, platform }) {
             const dateStr = new Date(attr.GDB_FROM_DATE).toISOString().split('T')[0];
             ihMap.set(dateStr, [
                 dateStr,
-                parseInt(attr.CalculatedAcres) || 0,
+                Number(attr.IncidentSize) || 0,
                 parseInt(attr.EstimatedCostToDate) || 0,
                 parseInt(attr.PercentContained) || 0,
                 parseInt(attr.TotalIncidentPersonnel) || 0
@@ -87,6 +93,7 @@ export async function POST({ request, platform }) {
         pushLog("DATA_CLEAN", `Incident timelines grouped into matrix array. Range: ${adate} to ${bdate}`);
 
         let rhTimelineList = [];
+        let rhData = null;
         if (irwinid) {
             pushLog("RH_QUERY", "Querying matching tactical response personnel details...");
             const rhUrl = "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/IRWIN_Incidents/FeatureServer/2/query";
@@ -96,7 +103,7 @@ export async function POST({ request, platform }) {
             const rhText = await rhResp.text();
 
             if (rhText.trim().startsWith('{')) {
-                const rhData = JSON.parse(rhText);
+                rhData = JSON.parse(rhText);
                 if (rhData.features && rhData.features.length > 0) {
                     pushLog("RH_QUERY", `Found ${rhData.features.length} tactical deployment items.`);
                     
@@ -128,7 +135,13 @@ export async function POST({ request, platform }) {
 
         pushLog("KV_STORAGE", "Packaging metadata timelines payload objects...");
         const contextSummary = { ufireid, name: incidentName, ihdate: new Date().toISOString().split('T')[0], adate, bdate };
-        const dataPayload = { meta: contextSummary, incident_history_timeline: ihTimelineList, resource_history_timeline: rhTimelineList };
+        const dataPayload = {
+            meta: contextSummary,
+            incident_history_timeline: ihTimelineList,
+            resource_history_timeline: rhTimelineList,
+            incident_api_response: ihData,
+            personnel_api_response: rhData
+        };
         
         await FIRE_STORE.put(`fire:data:${ufireid}`, JSON.stringify(dataPayload));
         pushLog("KV_STORAGE", `Saved 'fire:data:${ufireid}' timeline matrix package safely.`);

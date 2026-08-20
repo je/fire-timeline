@@ -25,7 +25,7 @@
                 const existingItem = uniqueMap.get(uniqueKey);
                 const existingCalDate = existingItem.ihdate || existingItem.bdate || existingItem.adate || '';
                 
-                if (currentCalDate.localeCompare(existingCalDate) > 0) {
+                if (currentCalDate.localeCompare(existingCalDate) >= 0) {
                     uniqueMap.set(uniqueKey, item);
                 }
             }

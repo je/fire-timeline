@@ -216,8 +216,8 @@
 			marks.push(Plot.dot(incidentData, { x: 'date', y: 'containment', fill: 'black', r: 1.5, channels: { Date: "date", "Percent Contained": d => `${d.containment}%` }, tip: { format: { x: false, y: false, Date: true, "Percent Contained": true, fill: false } } }));
 		}
 		if (visibleSeries.incidentPersonnel) {
-			marks.push(Plot.lineY(incidentData, { x: 'date', y: d => (d.incidentPersonnel / calcMaxIncidentPersonnel) * 100, stroke: 'orange', strokeWidth: 2 }));
-			marks.push(Plot.dot(incidentData, { x: 'date', y: d => (d.incidentPersonnel / calcMaxIncidentPersonnel) * 100, fill: 'orange', r: 1.5, channels: { Date: "date", "Total Incident Personnel": 'incidentPersonnel' }, tip: { format: { x: false, y: false, Date: true, "Total Incident Personnel": true, fill: false } } }));
+			marks.push(Plot.lineY(incidentData, { x: 'date', y: d => (d.incidentPersonnel / calcMaxIncidentPersonnel) * 100, stroke: 'royalblue', strokeWidth: 2 }));
+			marks.push(Plot.dot(incidentData, { x: 'date', y: d => (d.incidentPersonnel / calcMaxIncidentPersonnel) * 100, fill: 'royalblue', r: 1.5, channels: { Date: "date", "Total Incident Personnel": 'incidentPersonnel' }, tip: { format: { x: false, y: false, Date: true, "Total Incident Personnel": true, fill: false } } }));
 		}
 		masterDiv.appendChild(Plot.plot({
 			grid: true, 
@@ -313,7 +313,7 @@
 				<button onclick={() => toggleLine('acres')} class="btn btn-sm fw-bold" style="font-size: 0.75rem; background-color: {visibleSeries.acres ? '#fff' : '#f8f9fa'}; border: 1px solid {visibleSeries.acres ? 'red' : '#dee2e6'}; color: {visibleSeries.acres ? 'red' : '#6c757d'} !important; opacity: {visibleSeries.acres ? '1' : '0.5'}; text-decoration: {visibleSeries.acres ? 'none' : 'line-through'};">Incident Size</button>
 				<button onclick={() => toggleLine('cost')} class="btn btn-sm fw-bold" style="font-size: 0.75rem; background-color: {visibleSeries.cost ? '#fff' : '#f8f9fa'}; border: 1px solid {visibleSeries.cost ? 'green' : '#dee2e6'}; color: {visibleSeries.cost ? 'green' : '#6c757d'} !important; opacity: {visibleSeries.cost ? '1' : '0.5'}; text-decoration: {visibleSeries.cost ? 'none' : 'line-through'};">Financial Cost</button>
 				<button onclick={() => toggleLine('containment')} class="btn btn-sm fw-bold" style="font-size: 0.75rem; background-color: {visibleSeries.containment ? '#fff' : '#f8f9fa'}; border: 1px solid {visibleSeries.containment ? 'black' : '#dee2e6'}; color: {visibleSeries.containment ? 'black' : '#6c757d'} !important; opacity: {visibleSeries.containment ? '1' : '0.5'}; text-decoration: {visibleSeries.containment ? 'none' : 'line-through'};">Percent Contained</button>
-				<button onclick={() => toggleLine('incidentPersonnel')} class="btn btn-sm fw-bold" style="font-size: 0.75rem; background-color: {visibleSeries.incidentPersonnel ? '#fff' : '#f8f9fa'}; border: 1px solid {visibleSeries.incidentPersonnel ? 'orange' : '#dee2e6'}; color: {visibleSeries.incidentPersonnel ? 'orange' : '#6c757d'} !important; opacity: {visibleSeries.incidentPersonnel ? '1' : '0.5'}; text-decoration: {visibleSeries.incidentPersonnel ? 'none' : 'line-through'};">Total Incident Personnel</button>
+				<button onclick={() => toggleLine('incidentPersonnel')} class="btn btn-sm fw-bold" style="font-size: 0.75rem; background-color: {visibleSeries.incidentPersonnel ? '#fff' : '#f8f9fa'}; border: 1px solid {visibleSeries.incidentPersonnel ? 'royalblue' : '#4169E1'}; color: {visibleSeries.incidentPersonnel ? 'royalblue' : '#4169E1'} !important; opacity: {visibleSeries.incidentPersonnel ? '1' : '0.5'}; text-decoration: {visibleSeries.incidentPersonnel ? 'none' : 'line-through'};">Total Incident Personnel</button>
 			</div>
 		</div>
 	</div>

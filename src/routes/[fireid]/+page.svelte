@@ -355,7 +355,7 @@
 					<th class="py-0 text-end">Incident Size</th>
 					<th class="py-0 text-end">Cost</th>
 					<th class="py-0 text-end">Containment</th>
-					<th class="px-2 py-0 text-end text-warning">Total Incident Personnel</th>
+					<th class="px-2 py-0 text-end" style="color: royalblue;">Total Incident Personnel</th>
 				</tr>
 			</thead>
 			<tbody>

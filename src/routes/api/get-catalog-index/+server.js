@@ -9,7 +9,7 @@ export async function GET({ platform }) {
 			(typeof process !== 'undefined' ? process?.env?.FIRE_TIMELINE : null);
 
 		if (!kvNamespace) {
-			console.error("CRITICAL: FIRE_TIMELINE binding namespace not found on any global server context.");
+			console.error("CRITICAL: FIRE_TIMELINE binding namespace not found.");
 			return json([]); 
 		}
 
@@ -17,7 +17,7 @@ export async function GET({ platform }) {
 		
 		return json(Array.isArray(masterIndexRaw) ? masterIndexRaw : []);
 	} catch (error) {
-		console.error("Global Catalog API load failure:", error);
+		console.error("Catalog API load failure:", error);
 		return json([]);
 	}
 }

@@ -325,7 +325,7 @@
 	</div>
 
 	<div class="alert alert-secondary py-2 px-3 mb-2 small">
-		To limit the timeline to a date range, add <code>?YYYYMMDD-YYYYMMDD</code> to this page's URL. <a href={`${base}/${rawMeta?.ufireid}?${formatCompactDate(rawMeta?.adate)}-${formatCompactDate(rawMeta?.bdate)}`}>Open this incident's full range ({rawMeta?.adate} to {rawMeta?.bdate})</a>.
+		To limit the timeline to a date range, add <code>?YYYYMMDD-YYYYMMDD</code> to this page's URL. For example, <a href={`${base}/${rawMeta?.ufireid}?${formatCompactDate(rawMeta?.adate)}-${formatCompactDate(rawMeta?.bdate)}`}>{`${base}/${rawMeta?.ufireid}?${formatCompactDate(rawMeta?.adate)}-${formatCompactDate(rawMeta?.bdate)}`}</a> shows the full {rawMeta?.adate} to {rawMeta?.bdate} date range for this incident.
 	</div>
 
 	<div style="background: white; padding: 1.5rem; border: 2px solid #333; border-radius: 8px; margin-bottom: 2.5rem; box-shadow: 4px 4px 0px #333;">

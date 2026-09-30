@@ -84,6 +84,12 @@
 		return d.toISOString().slice(0, 10);
 	}
 
+	function formatCompactDate(dateValue) {
+		const date = new Date(dateValue);
+		if (isNaN(date.getTime())) return '';
+		return date.toISOString().slice(0, 10).replaceAll('-', '');
+	}
+
 	function getAgencyColor(label) {
 		const colors = {
 			'BIA': 'firebrick', 'BLM': 'saddlebrown', 'C & L': 'gainsboro', 'DOI': '#ffb703',
@@ -316,6 +322,10 @@
 				<button onclick={() => toggleLine('incidentPersonnel')} class="btn btn-sm fw-bold" style="font-size: 0.75rem; background-color: {visibleSeries.incidentPersonnel ? '#fff' : '#f8f9fa'}; border: 1px solid {visibleSeries.incidentPersonnel ? 'royalblue' : '#4169E1'}; color: {visibleSeries.incidentPersonnel ? 'royalblue' : '#4169E1'} !important; opacity: {visibleSeries.incidentPersonnel ? '1' : '0.5'}; text-decoration: {visibleSeries.incidentPersonnel ? 'none' : 'line-through'};">Total Incident Personnel</button>
 			</div>
 		</div>
+	</div>
+
+	<div class="alert alert-secondary py-2 px-3 mb-2 small">
+		To limit the timeline to a date range, add <code>?YYYYMMDD-YYYYMMDD</code> to this page's URL. <a href={`${base}/${rawMeta?.ufireid}?${formatCompactDate(rawMeta?.adate)}-${formatCompactDate(rawMeta?.bdate)}`}>Open this incident's full range ({rawMeta?.adate} to {rawMeta?.bdate})</a>.
 	</div>
 
 	<div style="background: white; padding: 1.5rem; border: 2px solid #333; border-radius: 8px; margin-bottom: 2.5rem; box-shadow: 4px 4px 0px #333;">

@@ -24,6 +24,8 @@
 		INTL: true, NPS: true, NWS: true, PRI: true, ST: true, 
 		TNC: true, USFS: true, WAD: true, OTHR: true
 	});
+	let selectedStartDate = $state('');
+	let selectedEndDate = $state('');
 	let masterDiv, stackedPersonnelDiv;
 
 	const resourceTableRows = $derived(
@@ -74,6 +76,20 @@
 			.reverse()
 	);
 
+	const chartDateExtent = $derived.by(() => {
+		const timestamps = [...incidentTableRows, ...resourceTableRows].map(row => row.date.getTime());
+		if (!timestamps.length) return { start: '', end: '' };
+		return {
+			start: formatToYMD(new Date(Math.min(...timestamps))),
+			end: formatToYMD(new Date(Math.max(...timestamps)))
+		};
+	});
+
+	const chartDateRange = $derived({
+		start: selectedStartDate || chartDateExtent.start,
+		end: selectedEndDate || chartDateExtent.end
+	});
+
 	function toggleLine(key) { 
 		visibleSeries[key] = !visibleSeries[key]; 
 	}
@@ -82,6 +98,11 @@
 		const d = new Date(dateObj); 
 		if (isNaN(d.getTime())) return "";
 		return d.toISOString().slice(0, 10);
+	}
+
+	function resetDateRange() {
+		selectedStartDate = '';
+		selectedEndDate = '';
 	}
 
 	function getAgencyColor(label) {
@@ -149,8 +170,10 @@
 
 		if (incidentData.length === 0 && resourceData.length === 0) return;
 
-		const allDates = [...incidentData.map(d => d.date.getTime()), ...resourceData.map(d => d.date.getTime())];
-		const fixedXDomain = new Array(new Date(Math.min(...allDates)), new Date(Math.max(...allDates)));
+		const fixedXDomain = [
+			new Date(`${chartDateRange.start}T00:00:00.000Z`),
+			new Date(`${chartDateRange.end}T23:59:59.999Z`)
+		];
 
 		const calcMaxAcres = Math.max(...incidentData.map(d => d.acres), 0) || 1;
 		const calcMaxCost = Math.max(...incidentData.map(d => d.cost), 0) || 1;
@@ -322,7 +345,20 @@
 		<div class="mb-2 pb-1" style="font-size: 11px; font-family: sans-serif; border-bottom: 1px solid #dee2e6;">
 			<span class="text-dark fw-bold text-uppercase tracking-wider">{rawMeta?.name || 'Wildfire'}</span> &bull; 
 			<span class="text-muted">ID:</span> <span class="text-dark">{rawMeta?.ufireid || 'N/A'}</span> &bull; 
-			<span class="text-muted">Timeline:</span> <span class="text-dark">{rawMeta?.adate || ''}</span> to <span class="text-dark">{rawMeta?.bdate || ''}</span>
+			<span class="text-muted">Showing:</span> <span class="text-dark">{chartDateRange.start}</span> to <span class="text-dark">{chartDateRange.end}</span>
+		</div>
+		<div class="d-flex flex-wrap align-items-end gap-2 mb-3 p-2 bg-light border rounded-2">
+			<div class="me-auto">
+				<div class="small fw-bold text-dark">Limit the graph to a date range</div>
+				<div class="small text-muted">Choose start and end dates to zoom in; reset to show the full timeline.</div>
+			</div>
+			<label class="small text-muted">Start date
+				<input class="form-control form-control-sm" type="date" aria-label="Graph start date" bind:value={selectedStartDate} min={chartDateExtent.start} max={selectedEndDate || chartDateExtent.end} disabled={!chartDateExtent.start} />
+			</label>
+			<label class="small text-muted">End date
+				<input class="form-control form-control-sm" type="date" aria-label="Graph end date" bind:value={selectedEndDate} min={selectedStartDate || chartDateExtent.start} max={chartDateExtent.end} disabled={!chartDateExtent.end} />
+			</label>
+			<button class="btn btn-sm btn-outline-secondary" onclick={resetDateRange} disabled={!selectedStartDate && !selectedEndDate}>Reset</button>
 		</div>
 		<div bind:this={masterDiv}></div>
 	</div>
